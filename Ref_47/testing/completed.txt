@@ -1,0 +1,70 @@
+Enhancing solids deposit prediction in gully pots with explainable hybrid models: A review
+A comparative study of satellite altimetry-based and DEM-based methods for estimating lake water volume changes
+Assessment of rainfall-derived inflow and infiltration in sewer systems with machine learning approaches
+Removal effect of pollutants from stormwater runoff in shallow bioretention system with gramineous plants
+Identification of agricultural surface source pollution in plain river network areas based on 3D-EEMs and convolutional neural networks
+Enhancing solids deposit prediction in gully pots with explainable hybrid models: A review
+A comparative study of satellite altimetry-based and DEM-based methods for estimating lake water volume changes
+Assessment of rainfall-derived inflow and infiltration in sewer systems with machine learning approaches
+Removal effect of pollutants from stormwater runoff in shallow bioretention system with gramineous plants
+Identification of agricultural surface source pollution in plain river network areas based on 3D-EEMs and convolutional neural networks
+Microplastic inhibits the sorption of trichloroethylene on modified biochar
+A field study of manhole cover leakage
+Identification, degradation characteristics, and application of a newly isolated pyridine-degrading Paracidovorax sp. BN6-4
+Enhanced properties of a positive-charged nanofiltration membrane containing quaternarized chitosan through second interfacial polymerization for the removal of salts and pharmaceuticals
+Spatiotemporal distribution of ecological risk of antibiotics in seven major river basins of China: An optimized multilevel assessment approach
+Applications of different types of heat pipes in solar desalinations: A comprehensive review
+An improved method for isotopic and quantitative analysis of dissolved organic carbon in natural water samples
+Valorization of fat balls and primary scum from wastewater treatment: a promising renewable lipid feedstock for biodiesel production
+Research on the purification effect of major pollutants in water by modular constructed wetlands with different filler combinations
+Impact of PVC microplastics in photodynamic inactivation of Staphylococcus aureus and MRSA
+Coupling of biogas residue biochar and low-magnitude electric fields promotes anaerobic co-digestion of sewage sludge and food waste
+A simple method to prepare anion exchange membrane by PVA/EVOH/MIDA for acid recovery by diffusion dialysis
+Solar desalination system for fresh water production performance estimation in net-zero energy consumption building: A comparative study on various machine learning models
+Pollutant removal in an experimental bioretention cell situated in a northern Chinese sponge city
+The influence of the acid water of the Banyupait River on the community health in Bantal village, Asembagus, Indonesia
+Pollution sources apportionment and suitability assessment of Lah River, Ethiopia: Conjunctive application of multivariate statistical analysis and water quality index
+Evaluation of vulnerable zones to water pollution in the lower Soummam alluvial aquifer, Bejaia, Algeria
+A perspective for the acceptance of water reuse: history of the valorization of wastewater throughout the development of society
+Climate change risks to water security: Exploring the interplay between climate change, water theft, and water (in)security
+Comparative analysis of tracer studies in the determination of longitudinal dispersion coefficient
+Estimation of instantaneous peak flows in Canadian rivers: an evaluation of conventional, nonlinear regression, and machine learning methods
+The banana tree circle as a nature-based solution for sustainable greywater management: A new design model
+Establishing a river health evaluation index system for seven rivers in Jiamusi City of China
+A hybrid water quality prediction model based on variational mode decomposition and bidirectional gated recursive unit
+Advancement of membrane separation technology for organic pollutant removal
+Comparative analysis of tracer studies in the determination of longitudinal dispersion coefficient
+Comparative analysis of tracer studies in the determination of longitudinal dispersion coefficient
+Estimation of instantaneous peak flows in Canadian rivers: an evaluation of conventional, nonlinear regression, and machine learning methods
+The banana tree circle as a nature-based solution for sustainable greywater management: A new design model
+Establishing a river health evaluation index system for seven rivers in Jiamusi City of China
+A hybrid water quality prediction model based on variational mode decomposition and bidirectional gated recursive unit
+Advancement of membrane separation technology for organic pollutant removal
+Research progress and perspective on sludge anaerobic digestion technology: A bibliometric analysis
+Enhancing hydrological modeling with transformers: a case study for 24-h streamflow prediction
+Effects of carbonization temperature and time on the characteristics of carbonized sludge
+Enhancing short-term streamflow prediction in the Haihe River Basin through integrated machine learning with Lasso
+Enhanced biodegradation of phenol under Cr(VI) stress by microbial collaboration and potential application of machine learning for phenol biodegradation
+Evaluation of vulnerable zones to water pollution in the lower Soummam alluvial aquifer, Bejaia, Algeria
+Comparative analysis of tracer studies in the determination of longitudinal dispersion coefficient
+A perspective for the acceptance of water reuse: history of the valorization of wastewater throughout the development of society
+Estimation of instantaneous peak flows in Canadian rivers: an evaluation of conventional, nonlinear regression, and machine learning methods
+Climate change risks to water security: Exploring the interplay between climate change, water theft, and water (in)security
+The banana tree circle as a nature-based solution for sustainable greywater management: A new design model
+Talking about my generation: exploratory insights from water policy makers in British Columbia
+Actors' perspectives on barriers to the use of sewage sludge in Sweden
+Establishing a river health evaluation index system for seven rivers in Jiamusi City of China
+Comparative analysis of tracer studies in the determination of longitudinal dispersion coefficient
+Estimation of instantaneous peak flows in Canadian rivers: an evaluation of conventional, nonlinear regression, and machine learning methods
+The banana tree circle as a nature-based solution for sustainable greywater management: A new design model
+Establishing a river health evaluation index system for seven rivers in Jiamusi City of China
+A hybrid water quality prediction model based on variational mode decomposition and bidirectional gated recursive unit
+Advancement of membrane separation technology for organic pollutant removal
+Research progress and perspective on sludge anaerobic digestion technology: A bibliometric analysis
+Enhancing hydrological modeling with transformers: a case study for 24-h streamflow prediction
+Effects of carbonization temperature and time on the characteristics of carbonized sludge
+Enhancing short-term streamflow prediction in the Haihe River Basin through integrated machine learning with Lasso
+Enhanced biodegradation of phenol under Cr(VI) stress by microbial collaboration and potential application of machine learning for phenol biodegradation
+Application of multi-criteria decision-making on low-impact development practice selection for the Kinyerezi River sub-catchments in Dar es Salaam, Tanzania
+Research on the connectivity of urban river network–wetland and water quality simulation
+Migration of various ions based on pH shifts triggered by the application of sediment microbial fuel cells
