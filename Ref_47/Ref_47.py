@@ -99,7 +99,7 @@ while p < len(url_list):
         Download_Path, Email_Sent, Check_duplicate, user_id = common_function.read_ini_file(ini_path)
         current_out = common_function.return_current_outfolder(Download_Path, user_id, url_id)
         out_excel_file = common_function.output_excel_name(current_out)
-        Ref_value = "47"
+        Ref_value = "49"
 
         if q == 0:
             print(url_id)

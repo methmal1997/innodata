@@ -102,39 +102,40 @@ def email_body(email_date, email_time,skipped,errors,completed_list,download_cou
     return subject,html_body
 
 def send_email(subject, body, attachments,Sending_address,to_email_list,cc_email_list,port):
+    try:
+        if attachments is None:
+            attachments = []
+        from email.mime.multipart import MIMEMultipart
+        from email.mime.text import MIMEText
+        from email.mime.base import MIMEBase
+        from email import encoders
 
-    if attachments is None:
-        attachments = []
-    from email.mime.multipart import MIMEMultipart
-    from email.mime.text import MIMEText
-    from email.mime.base import MIMEBase
-    from email import encoders
+        sender_address = Sending_address
 
-    sender_address = Sending_address
+        message = MIMEMultipart()
+        message['From'] = sender_address
+        message['To'] = ", ".join(to_email_list)
+        message['CC'] = ", ".join(cc_email_list)
+        message['Subject'] = subject
+        message.attach(MIMEText(body, 'html'))
 
-    message = MIMEMultipart()
-    message['From'] = sender_address
-    message['To'] = ", ".join(to_email_list)
-    message['CC'] = ", ".join(cc_email_list)
-    message['Subject'] = subject
-    message.attach(MIMEText(body, 'html'))
+        if not attachments == []:
+            csv_filename = attachments
+            with open(attachments, "rb") as attachment:
+                part = MIMEBase('multipart', 'plain')
+                part.set_payload(attachment.read())
+                attachment.close()
+            encoders.encode_base64(part)
+            part.add_header("Content-Disposition", f"attachment; filename= {csv_filename}")
+            message.attach(part)
 
-    if not attachments == []:
-        csv_filename = attachments
-        with open(attachments, "rb") as attachment:
-            part = MIMEBase('multipart', 'plain')
-            part.set_payload(attachment.read())
-            attachment.close()
-        encoders.encode_base64(part)
-        part.add_header("Content-Disposition", f"attachment; filename= {csv_filename}")
-        message.attach(part)
-
-    session = smtplib.SMTP('smtpsgp.innodata.com', port)
-    text = message.as_string()
-    session.sendmail(sender_address, to_email_list + cc_email_list, text)
-    session.quit()
-    print('Mail Sent')
-
+        session = smtplib.SMTP('smtpsgp.innodata.com', port)
+        text = message.as_string()
+        session.sendmail(sender_address, to_email_list + cc_email_list, text)
+        session.quit()
+        print('Mail Sent')
+    except Exception as e:
+        print(str(e))
 
 def compose_email_to_send(url_id,duplicate_list,error_list,completed_list,pdf_count,attachment, date_for_email, time_for_email,Sending_address,to_email_list,cc_email_list,port,Ref_value):
     subject,body = email_body(str(date_for_email), str(time_for_email),duplicate_list,error_list,completed_list,pdf_count,url_id,Ref_value)
@@ -184,15 +185,6 @@ def email_body_html(email_date, email_time,skipped,errors,completed_list,downloa
     with open(out_html_file, "w") as file:
         file.write(content)
     print("Email created!")
-
-def save_email_body(url_id,duplicate_list,error_list,completed_list,pdf_count,attachment, date_for_email, time_for_email,Sending_address,to_email_list,cc_email_list,port,Ref_value,selected_directory):
-    subject,body = email_body(str(date_for_email), str(time_for_email),duplicate_list,error_list,completed_list,pdf_count,url_id,Ref_value)
-    soup = BeautifulSoup(body, 'html.parser')
-    formatted_html = soup.prettify()
-
-    file_path = os.path.join(selected_directory, 'email.html')
-    with open(file_path, 'w') as file:
-        file.write(formatted_html)
 
 
 

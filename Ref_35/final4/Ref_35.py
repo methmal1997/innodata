@@ -127,8 +127,6 @@ try:
                             else:
                                 break
 
-
-
                         if proxy_failed:
                             try:
                                 print("Proxy failed. trying captcha slover...")
@@ -144,12 +142,7 @@ try:
                                     error)
                                 print(Error_message)
 
-
-
-
                     current_issue_link = 'https://journals.biologists.com/' + current_issue_link
-
-
 
                     try:
                         try:
@@ -200,129 +193,116 @@ try:
                                                           class_='al-link pdf openInAnotherWindow stats-item-pdf-download js-download-file-gtm-datalayer-event article-pdfLink')
 
 
-                            if not Article_title in read_content:
+                            Article_link = 'https://journals.biologists.com' + section.find('h5',
+                                                                                            class_="customLink item-title").find(
+                                'a').get('href')
+                            try:
+                                Pdf_link = "https://journals.biologists.com" + reasearch_link.get(
+                                    'href')
+                                Pdf_link = captcha_main.current_url(Pdf_link)
 
-                                Article_link = 'https://journals.biologists.com' + section.find('h5',
-                                                                                                class_="customLink item-title").find(
-                                    'a').get('href')
+
                                 try:
-                                    Pdf_link = "https://journals.biologists.com" + reasearch_link.get(
-                                        'href')
-                                    Pdf_link = captcha_main.current_url(Pdf_link)
+                                    response = requests.get(Article_link, headers=headers,timeout=20)
+                                    current_soup_pdf = BeautifulSoup(response.content,
+                                                                     'html.parser')
+                                    current_soup_pdf.find('h1',
+                                                          class_='wi-article-title article-title-main').text
 
-
+                                except:
                                     try:
-                                        response = requests.get(Article_link, headers=headers,timeout=20)
-                                        current_soup_pdf = BeautifulSoup(response.content,
-                                                                         'html.parser')
-                                        current_soup_pdf.find('h1',
-                                                              class_='wi-article-title article-title-main').text
 
+
+                                        response = requests.get(Article_link, proxies=formatted_proxies[proxy_number],
+                                                                headers=headers,timeout=20)
+                                        current_soup_pdf = BeautifulSoup(response.content,
+                                                                             'html.parser')
+                                        current_soup_pdf.find('h1',
+                                                                  class_='wi-article-title article-title-main').text
                                     except:
                                         try:
-
-
-                                            response = requests.get(Article_link, proxies=formatted_proxies[proxy_number],
-                                                                    headers=headers,timeout=20)
+                                            response = captcha_main.captcha_main(Article_link)
                                             current_soup_pdf = BeautifulSoup(response.content,
-                                                                                 'html.parser')
-                                            current_soup_pdf.find('h1',
-                                                                      class_='wi-article-title article-title-main').text
+                                                                         'html.parser')
+                                        except:
+                                            pass
+
+                                try:
+                                    DOI = current_soup_pdf.find('div', class_='citation-doi').text
+                                    DOI = re.search(r'(?<=\bdoi.org\/)\d+\.\d+\/\w+.\d+', DOI).group(0)
+                                except:
+                                    DOI = ''
+
+                                check_value,tpa_id = common_function.check_duplicate(DOI,Article_title, url_id, volume, issue)
+
+                                try:
+                                    if Check_duplicate.lower() == "true" and check_value:
+                                        message = f"{Article_link} - duplicate record with TPAID : {tpa_id}"
+                                        duplicate_list.append(message)
+                                        print("Duplicate Article :", Article_title)
+
+                                    else:
+                                        try:
+                                            response = requests.get(Pdf_link, headers=headers,timeout=20)
+                                            if "We are sorry, but we are experiencing unusual traffic at this time. Please help us confirm that you are not a robot and we will take you to your content" in response.text:
+                                                response = captcha_main.captcha_main(Pdf_link)
+                                                pdf_content = response.content
+
+                                            else:
+                                                pdf_content = response.content
                                         except:
                                             try:
-                                                response = captcha_main.captcha_main(Article_link)
-                                                current_soup_pdf = BeautifulSoup(response.content,
-                                                                             'html.parser')
-                                            except:
-                                                pass
-
-                                    try:
-                                        DOI = current_soup_pdf.find('div', class_='citation-doi').text
-                                        DOI = re.search(r'(?<=\bdoi.org\/)\d+\.\d+\/\w+.\d+', DOI).group(0)
-                                    except:
-                                        DOI = ''
-
-                                    check_value = common_function.check_duplicate(DOI, Article_title,
-                                                                                  url_id, volume,
-                                                                                  issue)
-                                    try:
-                                        if Check_duplicate.lower() == "true" and check_value:
-                                            message = f"{Article_link} - duplicate record with TPAID {{tpaid returned in response}}"
-                                            duplicate_list.append(message)
-                                            print("Duplicate Article :", Article_title)
-
-                                        else:
-
-                                            try:
-
-                                                response = requests.get(Pdf_link, headers=headers,timeout=20)
-                                                if "We are sorry, but we are experiencing unusual traffic at this time. Please help us confirm that you are not a robot and we will take you to your content" in response.text:
-                                                    response = captcha_main.captcha_main(Pdf_link)
-                                                    pdf_content = response.content
-
-                                                else:
-                                                    pdf_content = response.content
+                                                response = captcha_main.captcha_main(Pdf_link)
+                                                pdf_content = response.content
                                             except:
                                                 try:
+                                                    time.sleep(3)
                                                     response = captcha_main.captcha_main(Pdf_link)
                                                     pdf_content = response.content
                                                 except:
-                                                    try:
-                                                        time.sleep(3)
-                                                        response = captcha_main.captcha_main(Pdf_link)
-                                                        pdf_content = response.content
-                                                    except:
-                                                        Error_message = "Failed to navigate to the link.captcha error..."
-                                                        print(Error_message)
-                                                        error_list.append(Error_message)
+                                                    Error_message = "Failed to navigate to the link.captcha error..."
+                                                    print(Error_message)
+                                                    error_list.append(Error_message)
 
-                                            output_fimeName = os.path.join(current_out, f"{pdf_count}.pdf")
-                                            with open(output_fimeName, 'wb') as file:
-                                                file.write(pdf_content)
+                                        output_fimeName = os.path.join(current_out, f"{pdf_count}.pdf")
+                                        with open(output_fimeName, 'wb') as file:
+                                            file.write(pdf_content)
 
-                                            data.append(
-                                                {"Title": Article_title, "DOI": DOI,
-                                                 "Publisher Item Type": "",
-                                                 "ItemID": "",
-                                                 "Identifier": "",
-                                                 "Volume": volume, "Issue": issue, "Supplement": "",
-                                                 "Part": "",
-                                                 "Special Issue": "", "Page Range": "", "Month": month,
-                                                 "Day": "",
-                                                 "Year": year,
-                                                 "URL": Article_link,
-                                                 "SOURCE File Name": f"{pdf_count}.pdf",
-                                                 "user_id": user_id})
+                                        data.append(
+                                            {"Title": Article_title, "DOI": DOI,
+                                             "Publisher Item Type": "",
+                                             "ItemID": "",
+                                             "Identifier": "",
+                                             "Volume": volume, "Issue": issue, "Supplement": "",
+                                             "Part": "",
+                                             "Special Issue": "", "Page Range": "", "Month": month,
+                                             "Day": "",
+                                             "Year": year,
+                                             "URL": Article_link,
+                                             "SOURCE File Name": f"{pdf_count}.pdf",
+                                             "user_id": user_id})
 
-                                            df = pd.DataFrame(data)
-                                            df.to_excel(out_excel_file, index=False)
-                                            pdf_count += 1
-                                            completed_list.append(Article_link)
+                                        df = pd.DataFrame(data)
+                                        df.to_excel(out_excel_file, index=False)
+                                        pdf_count += 1
+                                        completed_list.append(Article_link)
 
-                                            with open('completed.txt', 'a', encoding='utf-8') as write_file:
-                                                write_file.write(Article_title + '\n')
-                                            status += 1
-                                            print(
-                                                f"The total number of PDFs {articles_count_with_pdf} , {status} PDF have been downloded...")
-                                            print("###########")
-                                    except Exception as error:
-                                        if not status==articles_count_with_pdf:
-                                            Error_message = "Error in process :" + str(error)
-                                            print(Error_message)
-                                            error_list.append(Error_message)
-                                        else:
-                                            print("")
+                                        with open('completed.txt', 'a', encoding='utf-8') as write_file:
+                                            write_file.write(Article_link + '\n')
+                                        status += 1
+                                        print(
+                                            f"The total number of PDFs {articles_count_with_pdf} , {status} PDF have been downloded...")
+                                        print("###########")
+                                except Exception as error:
+                                    if not status==articles_count_with_pdf:
+                                        Error_message = "Error in process :" + str(error)
+                                        print(Error_message)
+                                        error_list.append(Error_message)
+                                    else:
+                                        print("")
 
-                                except:
-                                   pass
-
-
-                            else:
-                                status += 1
-                                print("Already downloded PDF. Skipped..")
-                                print(
-                                    f"The total number of PDFs {articles_count_with_pdf} , {status} PDF have been downloded.")
-                                print("###########")
+                            except:
+                               pass
 
                     # Email sending
                     print("check point 1")

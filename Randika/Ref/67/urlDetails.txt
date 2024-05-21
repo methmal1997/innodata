@@ -1,0 +1,4 @@
+https://journals.ametsoc.org/view/journals/bams/105/5/bams.105.issue-5.xml,77078099
+https://journals.ametsoc.org/view/journals/clim/37/11/clim.37.issue-11.xml,77132099
+https://journals.ametsoc.org/view/journals/atsc/81/5/atsc.81.issue-5.xml,77142999
+https://journals.ametsoc.org/view/journals/mwre/152/5/mwre.152.issue-5.xml,77260799

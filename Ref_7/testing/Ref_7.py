@@ -89,8 +89,7 @@ def go_into_article(url):
                     try:
                         print("trying proxy...: ", proxy_number)
                         response = requests.get(url, proxies=formatted_proxies[proxy_number],
-                                                headers=headers, timeout=20,
-                                                cookies=get_current_cookies(url))
+                                                headers=headers, timeout=20)
                         response_2 = requests.get('https://api.ipify.org?format=json',
                                                   proxies=formatted_proxies[proxy_number],
                                                   headers=headers,
@@ -204,7 +203,7 @@ try:
                                 try:
                                     print("trying proxy...: ", proxy_number)
                                     response = requests.get(url, proxies=formatted_proxies[proxy_number],
-                                                            headers=headers, timeout=20,cookies=get_current_cookies(url))
+                                                            headers=headers, timeout=20)
                                     response_2 = requests.get('https://api.ipify.org?format=json',
                                                               proxies=formatted_proxies[proxy_number], headers=headers,
                                                               timeout=20)
@@ -293,8 +292,7 @@ try:
                                     try:
                                         print("trying proxy...: ", proxy_number)
                                         response = requests.get(current_issue_link, proxies=formatted_proxies[proxy_number],
-                                                                headers=headers, timeout=20,
-                                                                cookies=get_current_cookies(current_issue_link))
+                                                                headers=headers, timeout=20)
                                         response_2 = requests.get('https://api.ipify.org?format=json',
                                                                   proxies=formatted_proxies[proxy_number],
                                                                   headers=headers,
@@ -370,140 +368,132 @@ try:
                             Article_title = article.find('h5', class_='item-title').find('a').text.strip()
                             Article_link = "https://journals.aai.org" + article.find('h5', class_='item-title').find(
                                 'a').get('href')
-                            if not Article_link in read_content:
 
-                                Page_range = article.find('div', class_='ww-citation-primary').text.strip().rsplit('): ', 1)[-1].rstrip('.')
-                                pdf_link = "https://journals.aai.org/"+article.find('a',class_='al-link pdf openInAnotherWindow stats-item-pdf-download js-download-file-gtm-datalayer-event article-pdfLink')['href']
-                                pdf_link = captcha_main.current_url(pdf_link)
-                                article_response = go_into_article(Article_link)
-                                article = BeautifulSoup(article_response.content, 'html.parser')
-                                DOI = article.find('div', class_='ww-citation-wrap-doi').find('a').text.strip().rsplit('doi.org/',1)[-1].rstrip('.')
-                                check_value = common_function.check_duplicate(DOI, Article_title, url_id, Volume, Issue)
-                                captcha_text = "We are sorry, but we are experiencing unusual traffic at this time. Please help us confirm that you are not a robot and we will take you to your content"
+                            Page_range = article.find('div', class_='ww-citation-primary').text.strip().rsplit('): ', 1)[-1].rstrip('.')
+                            pdf_link = "https://journals.aai.org/"+article.find('a',class_='al-link pdf openInAnotherWindow stats-item-pdf-download js-download-file-gtm-datalayer-event article-pdfLink')['href']
+                            pdf_link = captcha_main.current_url(pdf_link)
+                            article_response = go_into_article(Article_link)
+                            article = BeautifulSoup(article_response.content, 'html.parser')
+                            DOI = article.find('div', class_='ww-citation-wrap-doi').find('a').text.strip().rsplit('doi.org/',1)[-1].rstrip('.')
+                            check_value = common_function.check_duplicate(DOI, Article_title, url_id, Volume, Issue)
+                            captcha_text = "We are sorry, but we are experiencing unusual traffic at this time. Please help us confirm that you are not a robot and we will take you to your content"
 
-                                if Check_duplicate.lower() == "true" and check_value:
-                                    message = f"{Article_title} - duplicate record with TPAID {{tpaid returned in response}}"
-                                    duplicate_list.append(message)
-                                    print("Duplicate Article :", Article_title)
+                            check_value, tpa_id = common_function.check_duplicate(DOI, Article_title, url_id, Volume,
+                                                                                  Issue)
+                            if Check_duplicate.lower() == "true" and check_value:
+                                message = f"{Article_link} - duplicate record with TPAID : {tpa_id}"
+                                duplicate_list.append(message)
+                                print("Duplicate Article :", Article_title)
 
-
-                                else:
-                                    print("pdf_1.1 ")
-                                    status = True
-                                    pdf_trail = 1
-
-                                    while status:
-                                        time.sleep(random.uniform(5, 10))
-                                        response_pdf = requests.get(pdf_link, headers=headers, timeout=20,
-                                                                    cookies=get_current_cookies(Article_link),
-                                                                    allow_redirects=True)
-
-                                        if captcha_text not in response_pdf.text and pdf_trail < 10 and response_pdf.status_code == 200:
-                                            print("pdf_1.2 - normal request succeed")
-                                            status = False
-                                            break
-
-                                        elif pdf_trail == 10:
-                                            break
-                                        print("retrying pdf_1.1")
-                                        pdf_trail = pdf_trail + 1
-
-                                    if captcha_text in response_pdf.text or response_pdf.status_code!=200:
-                                        proxy_number = 0
-                                        proxy_failed = True
-                                        print("pdf_2.1")
-                                        while proxy_failed:
-                                            if proxy_number < 10:
-                                                print("trying proxy...: ", proxy_number)
-
-                                                try:
-                                                    response_pdf = requests.get(pdf_link,
-                                                                                proxies=formatted_proxies[proxy_number],
-                                                                                headers=headers, timeout=20,
-                                                                                cookies=get_current_cookies(
-                                                                                    Article_link),
-                                                                                allow_redirects=True)
-                                                    response_2 = requests.get('https://api.ipify.org?format=json',
-                                                                              proxies=formatted_proxies[proxy_number],
-                                                                              headers=headers,
-
-                                                                              timeout=20)
-
-                                                    proxy_ip = response_2.json()['ip']
-                                                    print('Proxy IP:', proxy_ip)
-
-                                                    if proxy_number < 10:
-                                                        if captcha_text not in response_pdf.text and response_pdf.status_code == 200:
-                                                            print("pdf_2.2 - proxy request succeed")
-                                                            break
-                                                except:
-                                                    print("retrying proxy")
-                                                    print("retrying pdf_2.1")
-                                                    pass
-                                                proxy_number = proxy_number + 1
-                                            else:
-                                                break
-
-                                    if captcha_text in response_pdf.text or response_pdf.status_code!=200:
-                                        print("pdf_3.1")
-                                        response_pdf = captcha_main.captcha_main(pdf_link)
-
-                                        if captcha_text in response_pdf.text:
-                                            print("Retrying captcha")
-                                            trial_0 = 1
-                                            approach_0 = True
-
-                                            while approach_0:
-                                                time.sleep(random.randint(5, 10))
-                                                response_pdf = captcha_main.captcha_main(pdf_link)
-                                                print(f"Retring captcha {trial_0}")
-
-                                                if captcha_text not in response_pdf.text and trial_0 < 11 and response_pdf.status_code == 200:
-                                                    print("pdf_3.2 - captcha request succeed")
-                                                    break
-                                                trial_0 = trial_0 + 1
-
-                                    if captcha_text not in response_pdf.text and response_pdf.status_code == 200:
-                                        pass
-
-                                    else:
-                                        Error_message = f"PDF viewing failed in using v2captcha and proxy. it may resul empty filed downloding {Article_title}"
-                                        print(Error_message)
-                                        error_list.append(Error_message)
-
-                                    pdf_content = response_pdf.content
-                                    output_fimeName = os.path.join(current_out, f"{pdf_count}.pdf")
-
-                                    with open(output_fimeName, 'wb') as file:
-                                        file.write(pdf_content)
-
-                                    data.append(
-                                        {"Title": Article_title, "DOI": DOI, "Publisher Item Type": "", "ItemID": "",
-                                         "Identifier": "",
-                                         "Volume": Volume, "Issue": Issue, "Supplement": "", "Part": "",
-                                         "Special Issue": "", "Page Range": Page_range, "Month": Month, "Day": "",
-                                         "Year": Year,
-                                         "URL": pdf_link, "SOURCE File Name": f"{pdf_count}.pdf", "user_id": user_id})
-
-                                    df = pd.DataFrame(data)
-                                    df.to_excel(out_excel_file, index=False)
-                                    pdf_count += 1
-                                    scrape_message = f"{Article_link}"
-                                    completed_list.append(scrape_message)
-                                    with open('completed.txt', 'a', encoding='utf-8') as write_file:
-                                        write_file.write(Article_title + '\n')
-                                    print(Article_title)
-                                    status_pdf += 1
-                                    print(f"The total number of PDFs {articles_count_with_pdf} , {status_pdf} PDF have been downloded...")
-                                    print("###########")
 
                             else:
-                                    status_pdf += 1
-                                    print(Article_title)
-                                    print("Already downloded PDF. Skipped..")
-                                    print(
-                                        f"The total number of PDFs {articles_count_with_pdf} , {status_pdf} PDF have been downloded.")
-                                    print("###########")
+                                print("pdf_1.1 ")
+                                status_1 = True
+                                pdf_trail = 1
+
+                                while status_1:
+                                    time.sleep(random.uniform(5, 10))
+                                    response_pdf = requests.get(pdf_link, headers=headers, timeout=20,
+                                                                allow_redirects=True)
+
+                                    if captcha_text not in response_pdf.text and pdf_trail < 10 and response_pdf.status_code == 200:
+                                        print("pdf_1.2 - normal request succeed")
+                                        status_1 = False
+                                        break
+
+                                    elif pdf_trail == 10:
+                                        break
+                                    print("retrying pdf_1.1")
+                                    pdf_trail = pdf_trail + 1
+
+                                if captcha_text in response_pdf.text or response_pdf.status_code!=200:
+                                    proxy_number = 0
+                                    proxy_failed = True
+                                    print("pdf_2.1")
+                                    while proxy_failed:
+                                        if proxy_number < 10:
+                                            print("trying proxy...: ", proxy_number)
+
+                                            try:
+                                                response_pdf = requests.get(pdf_link,
+                                                                            proxies=formatted_proxies[proxy_number],
+                                                                            headers=headers, timeout=20,
+                                                                            allow_redirects=True)
+                                                response_2 = requests.get('https://api.ipify.org?format=json',
+                                                                          proxies=formatted_proxies[proxy_number],
+                                                                          headers=headers,
+
+                                                                          timeout=20)
+
+                                                proxy_ip = response_2.json()['ip']
+                                                print('Proxy IP:', proxy_ip)
+
+                                                if proxy_number < 10:
+                                                    if captcha_text not in response_pdf.text and response_pdf.status_code == 200:
+                                                        print("pdf_2.2 - proxy request succeed")
+                                                        break
+                                            except:
+                                                print("retrying proxy")
+                                                print("retrying pdf_2.1")
+                                                pass
+                                            proxy_number = proxy_number + 1
+                                        else:
+                                            break
+
+                                if captcha_text in response_pdf.text or response_pdf.status_code!=200:
+                                    print("pdf_3.1")
+                                    response_pdf = captcha_main.captcha_main(pdf_link)
+
+                                    if captcha_text in response_pdf.text:
+                                        print("Retrying captcha")
+                                        trial_0 = 1
+                                        approach_0 = True
+
+                                        while approach_0:
+                                            time.sleep(random.randint(5, 10))
+                                            response_pdf = captcha_main.captcha_main(pdf_link)
+                                            print(f"Retring captcha {trial_0}")
+
+                                            if captcha_text not in response_pdf.text and trial_0 < 11 and response_pdf.status_code == 200:
+                                                print("pdf_3.2 - captcha request succeed")
+                                                break
+                                            trial_0 = trial_0 + 1
+
+                                if captcha_text not in response_pdf.text and response_pdf.status_code == 200:
+                                    pass
+
+                                else:
+                                    Error_message = f"PDF viewing failed in using v2captcha and proxy. it may resul empty filed downloding {Article_title}"
+                                    print(Error_message)
+                                    error_list.append(Error_message)
+
+                                pdf_content = response_pdf.content
+                                output_fimeName = os.path.join(current_out, f"{pdf_count}.pdf")
+
+                                with open(output_fimeName, 'wb') as file:
+                                    file.write(pdf_content)
+
+                                data.append(
+                                    {"Title": Article_title, "DOI": DOI, "Publisher Item Type": "", "ItemID": "",
+                                     "Identifier": "",
+                                     "Volume": Volume, "Issue": Issue, "Supplement": "", "Part": "",
+                                     "Special Issue": "", "Page Range": Page_range, "Month": Month, "Day": "",
+                                     "Year": Year,
+                                     "URL": pdf_link, "SOURCE File Name": f"{pdf_count}.pdf", "user_id": user_id})
+
+                                df = pd.DataFrame(data)
+                                df.to_excel(out_excel_file, index=False)
+                                pdf_count += 1
+                                scrape_message = f"{Article_link}"
+                                completed_list.append(scrape_message)
+                                with open('completed.txt', 'a', encoding='utf-8') as write_file:
+                                    write_file.write(Article_title + '\n')
+                                print(Article_title)
+                                status_pdf += 1
+                                print(f"The total number of PDFs {articles_count_with_pdf} , {status_pdf} PDF have been downloded...")
+                                print("###########")
+
+
                     except:
                         Error_message = "Error in scraping process or dataframe creation :" + str(error)
                         print(Error_message)
@@ -555,7 +545,7 @@ try:
                                                              len(completed_list), ini_path, attachment, current_date,
                                                              current_time, Ref_value)
                         print("check point 8")
-                    except:
+                    except Exception as error:
                         print("check point 9")
                         Error_message = "Error in the site :" + str(error)
                         print(Error_message)
