@@ -185,7 +185,8 @@ def email_body_html(email_date, email_time,skipped,errors,completed_list,downloa
         file.write(content)
     print("Email created!")
 
-def save_email_body(url_id,duplicate_list,error_list,completed_list,pdf_count,attachment, date_for_email, time_for_email,Sending_address,to_email_list,cc_email_list,port,Ref_value,selected_directory):
+
+def save_email_body(url_id,duplicate_list,error_list,completed_list,pdf_count,ini_path,attachment,date_for_email,time_for_email,Ref_value,selected_directory):
     subject,body = email_body(str(date_for_email), str(time_for_email),duplicate_list,error_list,completed_list,pdf_count,url_id,Ref_value)
     soup = BeautifulSoup(body, 'html.parser')
     formatted_html = soup.prettify()
