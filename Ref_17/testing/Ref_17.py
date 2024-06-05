@@ -361,6 +361,7 @@ try:
                         driver.quit()
                     except:
                         pass
+
                 except Exception as error:
                     try:
                         print("check point 7")
