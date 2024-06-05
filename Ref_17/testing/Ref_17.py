@@ -63,6 +63,10 @@ def get_current_cookies(url):
     time.sleep(random.uniform(0, 3))
     selenium_cookies = driver.get_cookies()
     cookies_for_requests = {cookie['name']: cookie['value'] for cookie in selenium_cookies}
+    try:
+        driver.quit()
+    except:
+        pass
     return cookies_for_requests
 
 
@@ -353,7 +357,10 @@ try:
                         pass
                     time.sleep(10)
                     print("check point 6")
-
+                    try:
+                        driver.quit()
+                    except:
+                        pass
                 except Exception as error:
                     try:
                         print("check point 7")

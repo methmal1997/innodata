@@ -5,8 +5,6 @@ from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.chrome.service import Service
 
 
-
-
 def initialize_undetected_chromedriver():
     try:
         options = uc.ChromeOptions()
@@ -20,20 +18,23 @@ def initialize_undetected_chromedriver():
         options.add_argument('--disable-extensions')
         options.add_argument('--disable-popup-blocking')
         options.add_argument('--user-agent=YOUR_USER_AGENT_STRING')
-        options.add_argument('--version_main=108')
+
+        chromedriver.install()  # This ensures the correct version of chromedriver is installed
         driver = uc.Chrome(options=options)
+
         print("Using undetected_chromedriver.")
         return driver
     except Exception as e:
+        print(f"Failed to initialize undetected_chromedriver: {e}")
         return None
 
 
-
-def initialize_regular_chromedriver(executable_path):
+def initialize_regular_chromedriver():
     try:
+        chromedriver.install()  # This ensures the correct version of chromedriver is installed
         options = webdriver.ChromeOptions()
-        # Add any necessary options here
-        driver = webdriver.Chrome(service=Service(r"./chromedriver.exe"), options=options)
+        options.add_argument('--headless')
+        driver = webdriver.Chrome(options=options)
         print("Using regular ChromeDriver.")
         return driver
     except WebDriverException as e:
