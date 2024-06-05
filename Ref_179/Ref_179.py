@@ -4,6 +4,7 @@ import json
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 from bs4 import BeautifulSoup
+import re
 import certifi
 import os
 import sys
@@ -82,73 +83,87 @@ try:
 
             response = requests.get(current_link, headers=headers, timeout=50)
             current_soup = BeautifulSoup(response.content, 'html.parser')
-            article_list =current_soup.find('div',class_="article-list")
-            print(article_list)
-            # print(current_soup)
-            # print(Articles)
-            # for article in Articles:
-            #     print(article)
+            article_list =current_soup.findAll('div',class_="article-list")
+            pdf_list = []
+            for article in article_list:
+                print("################################################################")
 
-                # Article_link = "http://www.cjco.cn"+article.find("a")['href']
-                # response = requests.get(Article_link, headers=headers, timeout=50)
-                # current_soup = BeautifulSoup(response.content, 'html.parser')
-                # print(current_soup)
-                # current_soup.find("div",class_="articleEn").find('h2')
-            print("####################")
+                pub_info_element = article.find('div', class_='article-list-time').find('font')
+                pub_info = pub_info_element.get_text(strip=True)
+                pattern = r"(\d{4}), (\d+)\((\d+)\): (\d+-\d+)"
+                match = re.search(pattern, pub_info)
+                year, volume, issue, page_range = match.groups()
 
+                title_element = article.find('div', class_='article-list-title').find('a', href=True)
+                url_part = title_element['href']
+                Article_link = "http://www.cjco.cn/" + url_part
 
-            #     pdf = article.find('div',class_='yw_text_med persian').findAll('a')[2]['href'][1:]
-            #     Pdf_link = "https://fsct.modares.ac.ir" + pdf
-            #     print(Article_title)
-            #     check_value, tpa_id = common_function.check_duplicate(DOI, Pdf_link, url_id, volume, issue)
-            #
-            #     if Check_duplicate.lower() == "true" and check_value:
-            #         message = f"{Pdf_link} - duplicate record with TPAID : {tpa_id}"
-            #         duplicate_list.append(message)
-            #         print("Duplicate Article :", Pdf_link)
-            #     else:
-            #         response_2 = requests.get(Pdf_link, headers=headers, timeout=50,verify=False)
-            #         pdf_content = response_2.content
-            #         output_fimeName = os.path.join(current_out, f"{pdf_count}.pdf")
-            #         with open(output_fimeName, 'wb') as file:
-            #             file.write(pdf_content)
-            #
-            #         data.append(
-            #             {"Title": Article_title, "DOI": DOI,
-            #              "Publisher Item Type": "",
-            #              "ItemID": "",
-            #              "Identifier": "",
-            #              "Volume": volume, "Issue": issue, "Supplement": "",
-            #              "Part": "",
-            #              "Special Issue": "", "Page Range": "", "Month": '',
-            #              "Day": "",
-            #              "Year": year,
-            #              "URL": Pdf_link,
-            #              "SOURCE File Name": f"{pdf_count}.pdf",
-            #              "user_id": user_id})
-            #
-            #         df = pd.DataFrame(data)
-            #         df.to_excel(out_excel_file, index=False)
-            #         print(f"Downloaded the PDF file {pdf_count}")
-            #         pdf_count += 1
-            #         completed_list.append(Pdf_link)
-            #         with open('completed.txt', 'a', encoding='utf-8') as write_file:
-            #             write_file.write(Pdf_link + '\n')
-            #         pdf_list.append(Article_title)
-            #
-            # if str(Email_Sent).lower() == "true":
-            #     attachment_path = out_excel_file
-            #     if os.path.isfile(attachment_path):
-            #         attachment = attachment_path
-            #     else:
-            #         attachment = None
-            #     common_function.attachment_for_email(url_id, duplicate_list, error_list, completed_list,
-            #                                          len(completed_list), ini_path, attachment, current_date,
-            #                                          current_time, Ref_value)
-            #
-            # sts_file_path = os.path.join(current_out, 'Completed.sts')
-            # with open(sts_file_path, 'w') as sts_file:
-            #     pass
+                Article_title = title_element.get_text(strip=True)
+                # doi_element = article.find('a', href=True, string=True)
+                # DOI = doi_element['href'].split('/doi/')[-1]
+                response = requests.get(Article_link, headers=headers, timeout=50)
+                current_soup = BeautifulSoup(response.content, 'html.parser')
+                dc_identifier_meta = current_soup.find('meta', attrs={'name': 'dc.identifier'})
+                DOI = dc_identifier_meta['content']
+
+                pdf_element = article.find('div', class_='article-list-zy').find('font', class_='font3').find('a',                                                                                            onclick=True)
+                if pdf_element:
+                    pdf_onclick = pdf_element['onclick']
+                pdf_id_match = re.search(r"downloadpdf\('(.+?)'\)", pdf_onclick)
+                if pdf_id_match:
+                    pdf_id = pdf_id_match.group(1)
+
+                Pdf_link = f"http://www.cjco.cn/article/exportPdf?id={pdf_id}"
+                check_value, tpa_id = common_function.check_duplicate(DOI, Pdf_link, url_id, volume, issue)
+
+                if Check_duplicate.lower() == "true" and check_value:
+                    message = f"{Pdf_link} - duplicate record with TPAID : {tpa_id}"
+                    duplicate_list.append(message)
+                    print("Duplicate Article :", Pdf_link)
+                else:
+                    if Article_title not in pdf_list:
+                        response_2 = requests.get(Pdf_link, headers=headers, timeout=50,verify=False)
+                        pdf_content = response_2.content
+                        output_fimeName = os.path.join(current_out, f"{pdf_count}.pdf")
+                        with open(output_fimeName, 'wb') as file:
+                            file.write(pdf_content)
+
+                        data.append(
+                            {"Title": Article_title, "DOI": DOI,
+                             "Publisher Item Type": "",
+                             "ItemID": "",
+                             "Identifier": "",
+                             "Volume": volume, "Issue": issue, "Supplement": "",
+                             "Part": "",
+                             "Special Issue": "", "Page Range": "", "Month": '',
+                             "Day": "",
+                             "Year": year,
+                             "URL": Pdf_link,
+                             "SOURCE File Name": f"{pdf_count}.pdf",
+                             "user_id": user_id})
+
+                        df = pd.DataFrame(data)
+                        df.to_excel(out_excel_file, index=False)
+                        print(f"Downloaded the PDF file {pdf_count}")
+                        pdf_count += 1
+                        completed_list.append(Pdf_link)
+                        with open('completed.txt', 'a', encoding='utf-8') as write_file:
+                            write_file.write(Pdf_link + '\n')
+                        pdf_list.append(Article_title)
+
+            if str(Email_Sent).lower() == "true":
+                attachment_path = out_excel_file
+                if os.path.isfile(attachment_path):
+                    attachment = attachment_path
+                else:
+                    attachment = None
+                common_function.attachment_for_email(url_id, duplicate_list, error_list, completed_list,
+                                                     len(completed_list), ini_path, attachment, current_date,
+                                                     current_time, Ref_value)
+
+            sts_file_path = os.path.join(current_out, 'Completed.sts')
+            with open(sts_file_path, 'w') as sts_file:
+                pass
 
         except Exception as error:
             Error_message = f"Error in the site: {error}"
