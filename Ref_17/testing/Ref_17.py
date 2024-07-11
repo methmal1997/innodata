@@ -11,9 +11,10 @@ import common_function
 from datetime import datetime
 import pandas as pd
 import captcha_main
+
+import undetected_chromedriver as uc
 import chromedriver_autoinstaller as chromedriver
 chromedriver.install()
-import undeted
 
 duplicate_list = []
 error_list = []
@@ -44,6 +45,23 @@ proxies_list = [
     "186.179.21.77:3199:mariyarathna-dh3w3:IxjkW0fdJy"
 ]
 
+
+def create_driver():
+    options = uc.ChromeOptions()
+    options.add_argument('--headless')
+    options.add_argument('--incognito')
+    options.add_argument('--disable-gpu')
+    options.add_argument('--disable-software-rasterizer')
+    options.add_argument('--disable-dev-shm-usage')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-infobars')
+    options.add_argument('--disable-extensions')
+    options.add_argument('--disable-popup-blocking')
+    options.add_argument('--user-agent=YOUR_USER_AGENT_STRING')
+    options.add_argument('--version_main=108')
+    return uc.Chrome(options=options)
+
+
 formatted_proxies = []
 for proxy in proxies_list:
     ip, port, user, password = proxy.split(':')
@@ -52,22 +70,17 @@ for proxy in proxies_list:
 
 
 def get_current_cookies(url):
-    driver = undeted.main()
-    if not driver:
-        Error_message = "Error in chrome driver or undeteted chrome :"
-        print(Error_message)
-        error_list.append(Error_message)
-        return None
-    driver.delete_all_cookies()
-    driver.get(url)
-    time.sleep(random.uniform(0, 3))
-    selenium_cookies = driver.get_cookies()
-    cookies_for_requests = {cookie['name']: cookie['value'] for cookie in selenium_cookies}
+    driver = create_driver()
     try:
+        driver.delete_all_cookies()
+        driver.get(url)
+        time.sleep(random.uniform(0, 3))
+        selenium_cookies = driver.get_cookies()
+        cookies_for_requests = {cookie['name']: cookie['value'] for cookie in selenium_cookies}
+        return cookies_for_requests
+    finally:
+        driver.close()
         driver.quit()
-    except:
-        pass
-    return cookies_for_requests
 
 
 try:
@@ -176,7 +189,12 @@ try:
 
                     Volume = re.sub(r'[^0-9]+', "", current_soup.find('span', class_='volume issue').text.strip().split(',')[0])
                     Issue = re.sub(r'[^0-9]+', "", current_soup.find('span', class_='volume issue').text.strip().split(',')[1])
-                    Date,Month, Year = current_soup.find('div', class_='ii-pub-date').text.strip().split(' ')
+                    x = current_soup.find('div', class_='ii-pub-date').text.strip().split(' ')
+                    try:
+                        Date,Month, Year = current_soup.find('div', class_='ii-pub-date').text.strip().split(' ')
+                    except:
+                        Date = None
+                        Month, Year = current_soup.find('div', class_='ii-pub-date').text.strip().split(' ')
 
                     print(Volume)
                     print(Issue)
@@ -322,6 +340,15 @@ try:
                         print(Error_message)
                         error_list.append(Error_message)
 ###############################################
+
+                    try:
+                        common_function.sendCountAsPost(url_id, Ref_value, str(articles_count_with_pdf), str(len(completed_list)),
+                                                        str(len(duplicate_list)),
+                                                        str(len(error_list)))
+                    except Exception as error:
+                        message = str(error)
+                        print("New update")
+                        error_list.append(message)
 
                     # Email sending
                     print("check point 1")

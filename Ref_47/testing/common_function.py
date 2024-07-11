@@ -68,6 +68,30 @@ def check_duplicate(doi,art_title,src_id,vol_no,iss_no):
     else:
         return False,tpa_id
 
+def sendCountAsPost(url_id,Ref_value,Total_count,Downloaded_count,Duplicated_count,Error_count):
+    url = "https://ism-portal.innodata.com/api/webcrawlers/add-info"
+
+    headers = {
+        "token": "6547bdf3f07202413b5daf3216e511028c14034b36ff47c514c0220a911785b3:1698740839",
+        "Content-Type": "application/json"
+    }
+
+    payload = {
+        'source_id': url_id,
+        'ref_id': f'REF_{Ref_value}',
+        'crawled_count': Total_count,
+        'downloaded_count': Downloaded_count,
+        'duplicate_count': Duplicated_count,
+        'error_count': Error_count
+    }
+
+    response=requests.post(url,headers=headers,json=payload)
+
+    if response.status_code == 200:
+        print("The download count POST request was sent successfully.")
+    else:
+        print(f"Failed to send POST request. Status code: {response.status_code}")
+
 def email_body(email_date, email_time,skipped,errors,completed_list,download_count,source_id,Ref_value):
     subject = '{} downloaded details ({})'.format(source_id, email_date + ' ' + email_time)
     subject+=' Ref_'+ Ref_value
@@ -102,39 +126,40 @@ def email_body(email_date, email_time,skipped,errors,completed_list,download_cou
     return subject,html_body
 
 def send_email(subject, body, attachments,Sending_address,to_email_list,cc_email_list,port):
+    try:
+        if attachments is None:
+            attachments = []
+        from email.mime.multipart import MIMEMultipart
+        from email.mime.text import MIMEText
+        from email.mime.base import MIMEBase
+        from email import encoders
 
-    if attachments is None:
-        attachments = []
-    from email.mime.multipart import MIMEMultipart
-    from email.mime.text import MIMEText
-    from email.mime.base import MIMEBase
-    from email import encoders
+        sender_address = Sending_address
 
-    sender_address = Sending_address
+        message = MIMEMultipart()
+        message['From'] = sender_address
+        message['To'] = ", ".join(to_email_list)
+        message['CC'] = ", ".join(cc_email_list)
+        message['Subject'] = subject
+        message.attach(MIMEText(body, 'html'))
 
-    message = MIMEMultipart()
-    message['From'] = sender_address
-    message['To'] = ", ".join(to_email_list)
-    message['CC'] = ", ".join(cc_email_list)
-    message['Subject'] = subject
-    message.attach(MIMEText(body, 'html'))
+        if not attachments == []:
+            csv_filename = attachments
+            with open(attachments, "rb") as attachment:
+                part = MIMEBase('multipart', 'plain')
+                part.set_payload(attachment.read())
+                attachment.close()
+            encoders.encode_base64(part)
+            part.add_header("Content-Disposition", f"attachment; filename= {csv_filename}")
+            message.attach(part)
 
-    if not attachments == []:
-        csv_filename = attachments
-        with open(attachments, "rb") as attachment:
-            part = MIMEBase('multipart', 'plain')
-            part.set_payload(attachment.read())
-            attachment.close()
-        encoders.encode_base64(part)
-        part.add_header("Content-Disposition", f"attachment; filename= {csv_filename}")
-        message.attach(part)
-
-    session = smtplib.SMTP('smtpsgp.innodata.com', port)
-    text = message.as_string()
-    session.sendmail(sender_address, to_email_list + cc_email_list, text)
-    session.quit()
-    print('Mail Sent')
-
+        session = smtplib.SMTP('smtpsgp.innodata.com', port)
+        text = message.as_string()
+        session.sendmail(sender_address, to_email_list + cc_email_list, text)
+        session.quit()
+        print('Mail Sent')
+    except Exception as e:
+        print(str(e))
 
 def compose_email_to_send(url_id,duplicate_list,error_list,completed_list,pdf_count,attachment, date_for_email, time_for_email,Sending_address,to_email_list,cc_email_list,port,Ref_value):
     subject,body = email_body(str(date_for_email), str(time_for_email),duplicate_list,error_list,completed_list,pdf_count,url_id,Ref_value)
@@ -184,15 +209,6 @@ def email_body_html(email_date, email_time,skipped,errors,completed_list,downloa
     with open(out_html_file, "w") as file:
         file.write(content)
     print("Email created!")
-
-def save_email_body(url_id,duplicate_list,error_list,completed_list,pdf_count,attachment, date_for_email, time_for_email,Sending_address,to_email_list,cc_email_list,port,Ref_value,selected_directory):
-    subject,body = email_body(str(date_for_email), str(time_for_email),duplicate_list,error_list,completed_list,pdf_count,url_id,Ref_value)
-    soup = BeautifulSoup(body, 'html.parser')
-    formatted_html = soup.prettify()
-
-    file_path = os.path.join(selected_directory, 'email.html')
-    with open(file_path, 'w') as file:
-        file.write(formatted_html)
 
 
 

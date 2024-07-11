@@ -25,26 +25,32 @@ url = "https://www.pnas.org/toc/pnas/current"
 
 
 
-
-options = uc.ChromeOptions()
-# options.add_argument('--headless')
-options.add_argument('--incognito')
-options.add_argument('--disable-gpu')
-options.add_argument('--disable-software-rasterizer')
-options.add_argument('--disable-dev-shm-usage')
-options.add_argument('--no-sandbox')
-options.add_argument('--disable-infobars')
-options.add_argument('--disable-extensions')
-options.add_argument('--disable-popup-blocking')
-options.add_argument('--user-agent=YOUR_USER_AGENT_STRING')
-options.add_argument('--version_main=108')
-driver = uc.Chrome(options=options)
-
-
-response = requests.get(url, headers=headers)
-soup = BeautifulSoup(response.content, 'html.parser')
-
-driver.get(url)
+def rotate(url):
+    options = uc.ChromeOptions()
+    # options.add_argument('--headless')
+    options.add_argument('--incognito')
+    options.add_argument('--disable-gpu')
+    options.add_argument('--disable-software-rasterizer')
+    options.add_argument('--disable-dev-shm-usage')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-infobars')
+    options.add_argument('--disable-extensions')
+    options.add_argument('--disable-popup-blocking')
+    options.add_argument('--user-agent=YOUR_USER_AGENT_STRING')
+    options.add_argument('--version_main=108')
+    driver = uc.Chrome(options=options)
 
 
-time.sleep(100)
+    response = requests.get(url, headers=headers)
+    soup = BeautifulSoup(response.content, 'html.parser')
+
+    driver.get(url)
+
+
+    time.sleep(10)
+    driver.close()
+    driver.quit()
+
+for i in range(0,100):
+    print(i)
+    rotate(url)

@@ -10,9 +10,9 @@ import common_function
 from datetime import datetime
 import pandas as pd
 import captcha_main
-import chromedriver_autoinstaller as chromedriver
-import undeted
 
+import undetected_chromedriver as uc
+import chromedriver_autoinstaller as chromedriver
 chromedriver.install()
 
 duplicate_list = []
@@ -46,26 +46,40 @@ proxies_list = [
     "186.179.21.77:3199:mariyarathna-dh3w3:IxjkW0fdJy"
 ]
 
-formatted_proxies = []
-for proxy in proxies_list:
-    ip, port, user, password = proxy.split(':')
-    formatted_proxy = f'http://{user}:{password}@{ip}:{port}'
-    formatted_proxies.append({'http': formatted_proxy, 'https': formatted_proxy})
+
+
+
+
+formatted_proxies = [{'http': f'http://{proxy.split(":")[2]}:{proxy.split(":")[3]}@{proxy.split(":")[0]}:{proxy.split(":")[1]}'} for proxy in proxies_list]
+
+
+options = uc.ChromeOptions()
+options.add_argument('--headless')
+options.add_argument('--incognito')
+options.add_argument('--disable-gpu')
+options.add_argument('--disable-software-rasterizer')
+options.add_argument('--disable-dev-shm-usage')
+options.add_argument('--no-sandbox')
+options.add_argument('--disable-infobars')
+options.add_argument('--disable-extensions')
+options.add_argument('--disable-popup-blocking')
+options.add_argument('--user-agent=YOUR_USER_AGENT_STRING')
+options.add_argument('--version_main=108')
+driver = uc.Chrome(options=options)
 
 def get_current_cookies(url):
-    driver = undeted.main()
-    if not driver:
-        Error_message = "Error in chrome driver or undeteted chrome :"
-        print(Error_message)
-        error_list.append(Error_message)
-        return None
-    driver.delete_all_cookies()
-    driver.get(url)
-    time.sleep(random.uniform(0, 3))
-    selenium_cookies = driver.get_cookies()
-    cookies_for_requests = {cookie['name']: cookie['value'] for cookie in selenium_cookies}
-    driver.quit()
-    return cookies_for_requests
+    try:
+
+        driver.delete_all_cookies()
+        driver.get(url)
+        time.sleep(random.uniform(0, 3))
+        selenium_cookies = driver.get_cookies()
+        cookies_for_requests = {cookie['name']: cookie['value'] for cookie in selenium_cookies}
+        driver.close()
+        return cookies_for_requests
+    finally:
+        driver.close()
+        driver.quit()
 
 def go_into_article(url):
     response = None
@@ -477,7 +491,7 @@ try:
                                     {"Title": Article_title, "DOI": DOI, "Publisher Item Type": "", "ItemID": "",
                                      "Identifier": "",
                                      "Volume": Volume, "Issue": Issue, "Supplement": "", "Part": "",
-                                     "Special Issue": "", "Page Range": Page_range, "Month": Month, "Day": "",
+                                     "Special Issue": "", "Page Range": Page_range, "Month": Month, "Day": Date,
                                      "Year": Year,
                                      "URL": pdf_link, "SOURCE File Name": f"{pdf_count}.pdf", "user_id": user_id})
 
@@ -498,6 +512,21 @@ try:
                         Error_message = "Error in scraping process or dataframe creation :" + str(error)
                         print(Error_message)
                         error_list.append(Error_message)
+
+                    try:
+                        driver.close()
+                        driver.quit()
+                    except:
+                        pass
+
+                    try:
+                        common_function.sendCountAsPost(url_id, Ref_value, str(articles_count_with_pdf), str(len(completed_list)),
+                                                        str(len(duplicate_list)),
+                                                        str(len(error_list)))
+                    except Exception as error:
+                        message = str(error)
+                        print("New update")
+                        error_list.append(message)
 
                     # Email sending
                     print("check point 1")

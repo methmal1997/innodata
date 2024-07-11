@@ -382,7 +382,7 @@ try:
                                         {"Title": Article_title, "DOI": DOI, "Publisher Item Type": "", "ItemID": "",
                                          "Identifier": "",
                                          "Volume": Volume, "Issue": Issue, "Supplement": "", "Part": "",
-                                         "Special Issue": "", "Page Range": Page_range, "Month": Month, "Day": "",
+                                         "Special Issue": "", "Page Range": Page_range, "Month": Month, "Day":Day,
                                          "Year": Year,
                                          "URL": pdf_link, "SOURCE File Name": f"{pdf_count}.pdf", "user_id": user_id})
                                     df = pd.DataFrame(data)
@@ -411,6 +411,14 @@ try:
                         Error_message = "Error in scraping process or dataframe creation :" + str(error)
                         print(Error_message)
                         error_list.append(Error_message)
+                    try:
+                        common_function.sendCountAsPost(url_id, Ref_value, str(articles_count_with_pdf), str(len(completed_list)),
+                                                        str(len(duplicate_list)),
+                                                        str(len(error_list)))
+                    except Exception as error:
+                        message = str(error)
+                        print("New update")
+                        error_list.append(message)
 
                     # Email sending
                     print("check point 1")

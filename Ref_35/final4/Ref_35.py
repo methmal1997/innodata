@@ -1,3 +1,5 @@
+print("This is Ref_35")
+
 import time
 import captcha_main
 import requests
@@ -9,7 +11,11 @@ import pandas as pd
 import random
 import re
 
-print("This is Ref_35")
+import undetected_chromedriver as uc
+import chromedriver_autoinstaller as chromedriver
+chromedriver.install()
+
+
 
 headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36'
@@ -55,7 +61,6 @@ def get_soup(url):
     soup = BeautifulSoup(response.content, 'html.parser')
     return soup
 
-
 try:
 
     with open('urlDetails.txt', 'r', encoding='utf-8') as file:
@@ -70,7 +75,6 @@ try:
         with open('completed.txt', 'w', encoding='utf-8'):
             with open('completed.txt', 'r', encoding='utf-8') as read_file:
                 read_content = read_file.read().split('\n')
-
 
     for i,url_url_id in enumerate(url_list):
         try:
@@ -91,7 +95,6 @@ try:
                 pdf_count = 1
                 Ref_value = "35"
                 url_value = url.split('/')[-2]
-
                 current_out = common_function.return_current_outfolder(Download_Path, user_id, url_id)
                 out_excel_file = common_function.output_excel_name(current_out)
 
@@ -100,7 +103,6 @@ try:
                         current_soup = get_soup(url)
                         current_issue = current_soup.find('div', class_='view-current-issue')
                         current_issue_link = current_soup.find('div', class_='view-current-issue').find('a').get('href')
-
 
                     except:
 
@@ -118,15 +120,13 @@ try:
                                     print('Proxy IP:', proxy_ip)
                                     current_soup = BeautifulSoup(response.content, 'html.parser')
                                     current_issue = current_soup.find('div', class_='view-current-issue')
-                                    current_issue_link = current_soup.find('div', class_='view-current-issue').find('a').get(
-                                        'href')
+                                    current_issue_link = current_soup.find('div', class_='view-current-issue').find('a').get('href')
                                     proxy_failed = False
                                     break
                                 except:
                                     proxy_number = proxy_number + 1
                             else:
                                 break
-
                         if proxy_failed:
                             try:
                                 print("Proxy failed. trying captcha slover...")
@@ -141,9 +141,7 @@ try:
                                 Error_message = "Error in captcha. please check captcha_api.txt with correct key and token :" + str(
                                     error)
                                 print(Error_message)
-
                     current_issue_link = 'https://journals.biologists.com/' + current_issue_link
-
                     try:
                         try:
 
@@ -158,7 +156,6 @@ try:
                     except:
                         try:
                             response = captcha_main.captcha_main(current_issue_link)
-
                         except Exception as error:
 
                             Error_message = "Error in captcha. please check captcha_api.txt with correct key and token :" + str(
@@ -166,7 +163,6 @@ try:
 
                             print(Error_message)
                             error_list.append(Error_message)
-
 
                     if response.status_code == 200:
 
@@ -275,7 +271,7 @@ try:
                                              "Identifier": "",
                                              "Volume": volume, "Issue": issue, "Supplement": "",
                                              "Part": "",
-                                             "Special Issue": "", "Page Range": "", "Month": month,
+                                             "Special Issue": "", "Page Range": date, "Month": month,
                                              "Day": "",
                                              "Year": year,
                                              "URL": Article_link,
@@ -303,6 +299,15 @@ try:
 
                             except:
                                pass
+
+                    try:
+                        common_function.sendCountAsPost(url_id, Ref_value, str(articles_count_with_pdf), str(len(completed_list)),
+                                                        str(len(duplicate_list)),
+                                                        str(len(error_list)))
+                    except Exception as error:
+                        message = str(error)
+                        print("New update")
+                        error_list.append(message)
 
                     # Email sending
                     print("check point 1")

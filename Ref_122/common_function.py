@@ -68,6 +68,30 @@ def check_duplicate(doi,art_title,src_id,vol_no,iss_no):
     else:
         return False,tpa_id
 
+def sendCountAsPost(url_id,Ref_value,Total_count,Downloaded_count,Duplicated_count,Error_count):
+    url = "https://ism-portal.innodata.com/api/webcrawlers/add-info"
+
+    headers = {
+        "token": "6547bdf3f07202413b5daf3216e511028c14034b36ff47c514c0220a911785b3:1698740839",
+        "Content-Type": "application/json"
+    }
+
+    payload = {
+        'source_id': url_id,
+        'ref_id': f'REF_{Ref_value}',
+        'crawled_count': Total_count,
+        'downloaded_count': Downloaded_count,
+        'duplicate_count': Duplicated_count,
+        'error_count': Error_count
+    }
+
+    response=requests.post(url,headers=headers,json=payload)
+
+    if response.status_code == 200:
+        print("The download count POST request was sent successfully.")
+    else:
+        print(f"Failed to send POST request. Status code: {response.status_code}")
+
 def email_body(email_date, email_time,skipped,errors,completed_list,download_count,source_id,Ref_value):
     subject = '{} downloaded details ({})'.format(source_id, email_date + ' ' + email_time)
     subject+=' Ref_'+ Ref_value

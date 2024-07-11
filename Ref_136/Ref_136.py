@@ -83,52 +83,74 @@ try:
 
             filtered_articles = list(set(filtered_articles))
             pdf_list = []
+
+            articles_count_with_pdf = len(filtered_articles)
+            print(f"articles_count_with_pdf {articles_count_with_pdf}")
             for article in filtered_articles:
+                try:
+                    Article_title = article.find('div', class_="yw_text yw_col1").text.strip()
+                    page_range = article.find('div', class_="yw_text yw_col2 persian").text.strip()
+                    page_range = re.search(r"P\.\s*(\d+-\d+)", page_range).group(1)
+                    sp = str(article.find('span', style='vertical-align:middle; direction:ltr').text.strip())
+                    DOI = sp[8:]
 
-                Article_title = article.find('div', class_="yw_text yw_col1").text.strip()
-                page_range = article.find('div', class_="yw_text yw_col2 persian").text.strip()
-                page_range = re.search(r"P\.\s*(\d+-\d+)", page_range).group(1)
-                sp = str(article.find('span', style='vertical-align:middle; direction:ltr').text.strip())
-                DOI = sp[8:]
+                    pdf = article.find('div',class_='yw_text_med persian').findAll('a')[2]['href'][1:]
+                    Pdf_link = "https://fsct.modares.ac.ir" + pdf
+                    print(Article_title)
+                    check_value, tpa_id = common_function.check_duplicate(DOI, Pdf_link, url_id, volume, issue)
 
-                pdf = article.find('div',class_='yw_text_med persian').findAll('a')[2]['href'][1:]
-                Pdf_link = "https://fsct.modares.ac.ir" + pdf
-                print(Article_title)
-                check_value, tpa_id = common_function.check_duplicate(DOI, Pdf_link, url_id, volume, issue)
+                    if Check_duplicate.lower() == "true" and check_value:
+                        message = f"{Pdf_link} - duplicate record with TPAID : {tpa_id}"
+                        duplicate_list.append(message)
+                        print("Duplicate Article :", Pdf_link)
+                    else:
+                        response_2 = requests.get(Pdf_link, headers=headers, timeout=50,verify=False)
+                        pdf_content = response_2.content
+                        output_fimeName = os.path.join(current_out, f"{pdf_count}.pdf")
+                        with open(output_fimeName, 'wb') as file:
+                            file.write(pdf_content)
 
-                if Check_duplicate.lower() == "true" and check_value:
-                    message = f"{Pdf_link} - duplicate record with TPAID : {tpa_id}"
-                    duplicate_list.append(message)
-                    print("Duplicate Article :", Pdf_link)
-                else:
-                    response_2 = requests.get(Pdf_link, headers=headers, timeout=50,verify=False)
-                    pdf_content = response_2.content
-                    output_fimeName = os.path.join(current_out, f"{pdf_count}.pdf")
-                    with open(output_fimeName, 'wb') as file:
-                        file.write(pdf_content)
+                        data.append(
+                            {"Title": Article_title, "DOI": DOI,
+                             "Publisher Item Type": "",
+                             "ItemID": "",
+                             "Identifier": "",
+                             "Volume": volume, "Issue": issue, "Supplement": "",
+                             "Part": "",
+                             "Special Issue": "", "Page Range": page_range, "Month": '',
+                             "Day": "",
+                             "Year": year,
+                             "URL": Pdf_link,
+                             "SOURCE File Name": f"{pdf_count}.pdf",
+                             "user_id": user_id})
 
-                    data.append(
-                        {"Title": Article_title, "DOI": DOI,
-                         "Publisher Item Type": "",
-                         "ItemID": "",
-                         "Identifier": "",
-                         "Volume": volume, "Issue": issue, "Supplement": "",
-                         "Part": "",
-                         "Special Issue": "", "Page Range": "", "Month": '',
-                         "Day": "",
-                         "Year": year,
-                         "URL": Pdf_link,
-                         "SOURCE File Name": f"{pdf_count}.pdf",
-                         "user_id": user_id})
+                        df = pd.DataFrame(data)
+                        df.to_excel(out_excel_file, index=False)
+                        print(f"Downloaded the PDF file {pdf_count}")
+                        pdf_count += 1
+                        completed_list.append(Pdf_link)
+                        with open('completed.txt', 'a', encoding='utf-8') as write_file:
+                            write_file.write(Pdf_link + '\n')
+                        pdf_list.append(Article_title)
 
-                    df = pd.DataFrame(data)
-                    df.to_excel(out_excel_file, index=False)
-                    print(f"Downloaded the PDF file {pdf_count}")
-                    pdf_count += 1
-                    completed_list.append(Pdf_link)
-                    with open('completed.txt', 'a', encoding='utf-8') as write_file:
-                        write_file.write(Pdf_link + '\n')
-                    pdf_list.append(Article_title)
+                except Exception as error:
+                    Error_message = "Error in the article downloading:" + str(error)
+                    print(Error_message, "\n")
+                    error_list.append(Error_message)
+                    common_function.attachment_for_email(url_id, duplicate_list, error_list, completed_list,
+                                                         len(completed_list),
+                                                         ini_path, attachment, current_date, current_time,
+                                                         Ref_value)
+
+            try:
+                common_function.sendCountAsPost(url_id, Ref_value, str(articles_count_with_pdf),
+                                                str(len(completed_list)),
+                                                str(len(duplicate_list)),
+                                                str(len(error_list)))
+            except Exception as error:
+                message = str(error)
+                print("New update")
+                error_list.append(message)
 
             if str(Email_Sent).lower() == "true":
                 attachment_path = out_excel_file

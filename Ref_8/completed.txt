@@ -9,3 +9,58 @@ https://opg.optica.org/opn/viewmedia.cfm?uri=opn-35-5-46&seq=0
 https://opg.optica.org/opn/viewmedia.cfm?uri=opn-35-5-26&seq=0
 https://opg.optica.org/opn/viewmedia.cfm?uri=opn-35-5-42&seq=0
 https://opg.optica.org/opn/viewmedia.cfm?uri=opn-35-5-12&seq=0
+https://opg.optica.org/jot/viewmedia.cfm?uri=jot-90-12-743&seq=0
+https://opg.optica.org/jot/viewmedia.cfm?uri=jot-90-12-782&seq=0
+https://opg.optica.org/jot/viewmedia.cfm?uri=jot-90-12-760&seq=0
+https://opg.optica.org/jot/viewmedia.cfm?uri=jot-90-12-753&seq=0
+https://opg.optica.org/jot/viewmedia.cfm?uri=jot-90-12-772&seq=0
+https://opg.optica.org/jot/viewmedia.cfm?uri=jot-90-12-730&seq=0
+https://opg.optica.org/jot/viewmedia.cfm?uri=jot-90-12-719&seq=0
+https://opg.optica.org/jot/viewmedia.cfm?uri=jot-90-12-725&seq=0
+https://opg.optica.org/jot/viewmedia.cfm?uri=jot-90-12-766&seq=0
+https://opg.optica.org/jot/viewmedia.cfm?uri=jot-90-12-737&seq=0
+Advanced Solid-State Lasers: feature issue introduction
+Hybrid Photonics: Integration, Design and Devices: feature issue introduction
+Nanoimprinted exciton-polaritons metasurfaces: cost-effective, large-scale, high homogeneity, and room temperature operation [Invited]
+Nonlinear Optics: feature issue introduction
+Time-Varying Artificial Photonic Metastructures: introduction to the special issue
+Particle-hole instabilities in photonic time-varying systems
+Regulation of multiple exceptional points in a plasmonic quadrumer
+Observation of valley-polarized topological phase transition in surface wave photonic crystals
+Topological disclination mode in photonic Chern insulators
+Near-visible topological edge states in a silicon nitride platform
+Observation of photonic chiral edge states in penrose quasicrystals
+High-Q factor terahertz metamaterial sensor based on quasi-BIC
+Advanced Solid-State Lasers: feature issue introduction
+Hybrid Photonics: Integration, Design and Devices: feature issue introduction
+Nanoimprinted exciton-polaritons metasurfaces: cost-effective, large-scale, high homogeneity, and room temperature operation [Invited]
+Advanced Solid-State Lasers: feature issue introduction
+Hybrid Photonics: Integration, Design and Devices: feature issue introduction
+Advanced Solid-State Lasers: feature issue introduction
+Hybrid Photonics: Integration, Design and Devices: feature issue introduction
+Nanoimprinted exciton-polaritons metasurfaces: cost-effective, large-scale, high homogeneity, and room temperature operation [Invited]
+Nonlinear Optics: feature issue introduction
+Time-Varying Artificial Photonic Metastructures: introduction to the special issue
+Particle-hole instabilities in photonic time-varying systems
+Regulation of multiple exceptional points in a plasmonic quadrumer
+Observation of valley-polarized topological phase transition in surface wave photonic crystals
+Topological disclination mode in photonic Chern insulators
+Near-visible topological edge states in a silicon nitride platform
+Observation of photonic chiral edge states in penrose quasicrystals
+High-Q factor terahertz metamaterial sensor based on quasi-BIC
+Multi-function digital THz-metasurfaces based on phase change materials
+Numerical analysis and detection of cancer cells using a dual-core gold coated plasmonic biosensor
+Fractional thermal load in cryogenically cooled Yb:YLF and Yb:YAG lasers
+Dy-Al-Ce codoped silica: a promising yellow laser glass with enhanced resistance to X-ray-induced photodarkening
+Upconversion luminescence and temperature sensing properties of Tm3+, Yb3+, and Ho3+ doped 12CaO·7Al2O3 single crystals
+Compact multichannel reconfigurable mode demultiplexer enabled by phase change material
+Quasi-bound state in the continuum in a dielectric double-gap split-ring metasurface structure with large split angles
+Crystallization of Y3Fe5O12 thin films on silicon photonic waveguides using CO2 laser annealing
+Tunable ENZ properties in organic material PEDOT:PSS treated with different solutions
+High-performance photodetection based on black arsenic utilizing the photoconductive effect
+Impact of the number of well-barrier pair in the MQWs on the carrier distribution and confinement for the AlGaN-based far-UVC LEDs
+PIC-based opto-electronic oscillator for communication and sensing applications
+Compact powerful subnanosecond microchip laser based on Nd:YAG/Cr:YAG crystal operating without a thermal stabilization system
+Canonical and Poynting currents in propagation and diffraction of structured light: tutorial
+Advanced Solid-State Lasers: feature issue introduction
+Hybrid Photonics: Integration, Design and Devices: feature issue introduction

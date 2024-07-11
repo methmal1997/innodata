@@ -13,7 +13,6 @@ import pandas as pd
 from PyPDF2 import PdfReader
 
 
-print("This is Ref_122")
 def read_pdf(pdf_path):
     file_path = pdf_path
     reader = PdfReader(file_path)
@@ -132,6 +131,8 @@ while url_index < len(url_list):
 
         All_articles = currentSoup.find("div",class_="articleListBox active base-catalog").findAll("div",class_="article-list",id=True)
 
+        articles_count_with_pdf = len(All_articles)
+        print("no of All articles wqith pdf : ",articles_count_with_pdf)
         article_index, article_check = 0, 0
         while article_index < len(All_articles):
             Article_link, Article_title = None, None
@@ -189,6 +190,7 @@ while url_index < len(url_list):
 
                     df = pd.DataFrame(data)
                     df.to_excel(out_excel_file, index=False)
+                    print(f"Downloaded the PDF file {pdf_count}")
                     pdf_count += 1
                     scrape_message = f"{Article_link}"
                     completed_list.append(scrape_message)
@@ -209,6 +211,16 @@ while url_index < len(url_list):
                     error_list.append(message)
                     article_index, article_check = article_index + 1, 0
 
+        try:
+            common_function.sendCountAsPost(url_id, Ref_value, str(articles_count_with_pdf),
+                                            str(len(completed_list)),
+                                            str(len(duplicate_list)),
+                                            str(len(error_list)))
+        except Exception as error:
+            message = str(error)
+            print("New update")
+            error_list.append(message)
+
         if str(Email_Sent).lower() == "true":
             attachment_path = out_excel_file
             if os.path.isfile(attachment_path):
@@ -218,8 +230,7 @@ while url_index < len(url_list):
             common_function.attachment_for_email(url_id, duplicate_list, error_list, completed_list,
                                                  len(completed_list), ini_path, attachment, current_date,
                                                  current_time, Ref_value)
-            # common_function.email_body_html(current_date, current_time, duplicate_list, error_list, completed_list,
-            #                                 len(completed_list), url_id, Ref_value, attachment, current_out)
+
         sts_file_path = os.path.join(current_out, 'Completed.sts')
         with open(sts_file_path, 'w') as sts_file:
             pass

@@ -89,6 +89,7 @@ try:
                 l2_container = current_soup.find_all('div', class_='L2-container')[2]
                 l3_item_url = 'https://medic.upm.edu.my'+l2_container.find_all('li', class_='L3-item')[0].find('a').get('href')
 
+                # l3_item_url = "https://medic.upm.edu.my/jurnal_kami/volume_20_2024/mjmhs_vol20_supp_3_may_2024-79575"
                 response_2 = requests.get(l3_item_url, headers=headers, timeout=20)
                 current_soup_2 = BeautifulSoup(response_2.content, 'html.parser')
                 vol_issue = current_soup_2.find('h1', class_='L3-title').text
@@ -118,56 +119,84 @@ try:
 
 
                 p_tags = current_soup_2.find_all('p')
-
                 pattern = re.compile(r'^\d+\.\s')
 
                 filtered_p_tags = [p for p in p_tags if p.find(text=pattern)]
 
+                No_of_Articles = []
+
                 for p in filtered_p_tags:
-                    Article_title = p.text.split('http')[0].strip().split('.', 1)[1].strip().replace('"', '').split(':')[0].strip()
-                    DOI = p.text.split("://")[1].split("doi.org/")[1].split('\n')[0]
-                    Pdf_link = 'https://medic.upm.edu.my/'+ p.find('a').get('href')
-                    # print(DOI)
-                    check_value, tpa_id = common_function.check_duplicate(DOI, Pdf_link, url_id, volume, issue)
+                    try:
+                        Article = p.find('a').get('href')
+                        No_of_Articles.append(Article)
 
-                    if issue == '':
-                        check_value, tpa_id = common_function.check_duplicate(DOI, Pdf_link, url_id, volume, supplement)
+                        Article_title = p.text.split('http')[0].strip().split('.', 1)[1].strip().replace('"', '').split(':')[0].strip()
+                        DOI = p.text.split("://")[1].split("doi.org/")[1].split('\n')[0]
+                        Pdf_link = 'https://medic.upm.edu.my/'+ p.find('a').get('href')
+                        # print(DOI)
 
-                    if Check_duplicate.lower() == "true" and check_value:
-                        message = f"{Pdf_link} - duplicate record with TPAID : {tpa_id}"
-                        duplicate_list.append(message)
-                        print("Duplicate Article :", Pdf_link)
+                        check_value, tpa_id = common_function.check_duplicate(DOI, Pdf_link, url_id, volume, issue)
 
-                    else:
-                        if Article_title not in pdf_list:
-                            response = requests.get(Pdf_link, headers=headers, timeout=20)
-                            pdf_content = response.content
-                            output_fimeName = os.path.join(current_out, f"{pdf_count}.pdf")
-                            with open(output_fimeName, 'wb') as file:
-                                file.write(pdf_content)
+                        if issue == '':
+                            check_value, tpa_id = common_function.check_duplicate(DOI, Pdf_link, url_id, volume, supplement)
 
-                            data.append(
-                                {"Title": Article_title, "DOI": DOI,
-                                 "Publisher Item Type": "",
-                                 "ItemID": "",
-                                 "Identifier": "",
-                                 "Volume": volume, "Issue": issue, "Supplement": supplement,
-                                 "Part": "",
-                                 "Special Issue": "", "Page Range": "", "Month": month,
-                                 "Day": "",
-                                 "Year": year,
-                                 "URL": Pdf_link,
-                                 "SOURCE File Name": f"{pdf_count}.pdf",
-                                 "user_id": user_id})
+                        if Check_duplicate.lower() == "true" and check_value:
+                            message = f"{Pdf_link} - duplicate record with TPAID : {tpa_id}"
+                            duplicate_list.append(message)
+                            print("Duplicate Article :", Pdf_link)
 
-                            df = pd.DataFrame(data)
-                            df.to_excel(out_excel_file, index=False)
-                            print(f"Downloaded the PDF file {pdf_count}")
-                            pdf_count += 1
-                            completed_list.append(Pdf_link)
-                            with open('completed.txt', 'a', encoding='utf-8') as write_file:
-                                write_file.write(Pdf_link + '\n')
-                            pdf_list.append(Article_title)
+                        else:
+                            if Article_title not in pdf_list:
+                                response = requests.get(Pdf_link, headers=headers, timeout=20)
+                                pdf_content = response.content
+                                output_fimeName = os.path.join(current_out, f"{pdf_count}.pdf")
+                                with open(output_fimeName, 'wb') as file:
+                                    file.write(pdf_content)
+
+                                data.append(
+                                    {"Title": Article_title, "DOI": DOI,
+                                     "Publisher Item Type": "",
+                                     "ItemID": "",
+                                     "Identifier": "",
+                                     "Volume": volume, "Issue": issue, "Supplement": supplement,
+                                     "Part": "",
+                                     "Special Issue": "", "Page Range": "", "Month": month,
+                                     "Day": "",
+                                     "Year": year,
+                                     "URL": Pdf_link,
+                                     "SOURCE File Name": f"{pdf_count}.pdf",
+                                     "user_id": user_id})
+
+                                df = pd.DataFrame(data)
+                                df.to_excel(out_excel_file, index=False)
+                                print(f"Downloaded the PDF file {pdf_count}")
+                                pdf_count += 1
+                                completed_list.append(Pdf_link)
+                                with open('completed.txt', 'a', encoding='utf-8') as write_file:
+                                    write_file.write(Pdf_link + '\n')
+                                pdf_list.append(Article_title)
+                    except Exception as error:
+                        Error_message = "Error in the article downloading:" + str(error)
+                        print(Error_message, "\n")
+                        error_list.append(Error_message)
+                        common_function.attachment_for_email(url_id, duplicate_list, error_list, completed_list,
+                                                             len(completed_list),
+                                                             ini_path, attachment, current_date, current_time,
+                                                             Ref_value)
+
+                    articles_count_with_pdf = len(No_of_Articles)
+                    if articles_count_with_pdf==0:
+                        print("no pdf in site")
+
+                try:
+                    common_function.sendCountAsPost(url_id, Ref_value, str(articles_count_with_pdf),
+                                                    str(len(completed_list)),
+                                                    str(len(duplicate_list)),
+                                                    str(len(error_list)))
+                except Exception as error:
+                    message = str(error)
+                    print("New update")
+                    error_list.append(message)
 
                 if str(Email_Sent).lower() == "true":
                     attachment_path = out_excel_file

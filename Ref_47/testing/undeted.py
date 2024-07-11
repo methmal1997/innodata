@@ -2,6 +2,8 @@ import undetected_chromedriver as uc
 from selenium import webdriver
 from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.chrome.service import Service
+import chromedriver_autoinstaller as chromedriver
+chromedriver.install()
 
 
 def initialize_undetected_chromedriver():

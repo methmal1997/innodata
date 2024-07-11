@@ -11,3 +11,44 @@ RFX6 regulates human intestinal patterning and function upstream of PDX1
 Mechanistic regulation of planarian shape during growth and degrowth
 Multiple cis-regulatory elements control prox1a expression in distinct lymphatic vascular beds
 The CD36 scavenger receptor Bez regulates lipid redistribution from fat body to ovaries in Drosophila
+https://journals.biologists.com/jeb/article/227/10/jeb247849/352243/Kidnapped-chloroplasts-give-emerald-sea-slugs
+https://journals.biologists.com/jeb/article/227/10/jeb247938/352240/Speed-not-hill-running-is-main-factor-in-shin
+https://journals.biologists.com/jeb/article/227/10/jeb247940/352174/Sensor-cells-in-the-brain-wake-up-hibernating
+https://journals.biologists.com/jeb/article/227/10/jeb247167/352176/Integrating-water-balance-mechanisms-into
+https://journals.biologists.com/jeb/article/227/10/jeb247142/348249/Wavelength-specific-negatively-phototactic
+https://journals.biologists.com/jeb/article/227/10/jeb247046/352182/Dev-ResNet-automated-developmental-event-detection
+https://journals.biologists.com/jeb/article/227/10/jeb246772/347534/Automated-escape-system-identifying-prey-s
+https://journals.biologists.com/jeb/article/227/10/jeb247328/347378/A-surgical-technique-for-individual-control-of-the
+https://journals.biologists.com/jeb/article/227/10/jeb246269/352246/Electrosensory-and-metabolic-responses-of-weakly
+https://journals.biologists.com/jeb/article/227/10/jeb246331/352245/Critical-thermal-maxima-and-oxygen-uptake-in
+https://journals.biologists.com/jeb/article/227/10/jeb246770/352247/Tibial-strains-are-sensitive-to-speed
+https://journals.biologists.com/jeb/article/227/10/jeb246887/352207/The-role-of-vision-and-lateral-line-sensing-for
+https://journals.biologists.com/jeb/article/227/10/jeb247104/352181/Geometrical-multiscale-tortuosity-of-desert-ant
+https://journals.biologists.com/jeb/article/227/10/jeb247224/352175/c-fos-induction-in-the-choroid-plexus-tanycytes
+https://journals.biologists.com/jeb/article/227/10/jeb247537/352055/Hypoxia-impairs-blood-glucose-homeostasis-in-naked
+https://journals.biologists.com/jeb/article/227/10/jeb246223/348413/The-spatiotemporal-richness-of-hummingbird-wing
+https://journals.biologists.com/jeb/article/227/10/jeb246810/348291/Pulsation-waves-along-the-Ciona-heart-tube-reverse
+https://journals.biologists.com/jeb/article/227/10/jeb247221/347550/Investigating-the-thermal-sensitivity-of-key
+https://journals.biologists.com/jeb/article/227/10/jeb247850/352242/ECR-Spotlight-Ellie-Laetz
+https://journals.biologists.com/jeb/article/227/10/jeb247974/352235/ECR-Spotlight-Michael-Baggaley-and-Olivia-Bruce
+https://journals.biologists.com/jeb/article/227/10/jeb247993/352234/ECR-Spotlight-Shannon-Wiser
+https://journals.biologists.com/jeb/article/227/10/jeb247953/347549/ECR-Spotlight-Mohammad-Ojaghi
+https://journals.biologists.com/jeb/article/227/10/jeb247930/347548/ECR-Spotlight-Adele-Leger
+https://journals.biologists.com/dev/article/151/10/dev203022/347543/The-people-behind-the-papers-Jingjing-Sun-and
+https://journals.biologists.com/dev/article/151/10/dev202970/347527/The-people-behind-the-papers-Bridget-Ostrem-Nuria
+https://journals.biologists.com/dev/article/151/10/dev203021/347529/The-people-behind-the-papers-Julie-Klepstad-and
+https://journals.biologists.com/dev/article/151/10/dev201741/352236/Establishment-and-maintenance-of-random
+https://journals.biologists.com/dev/article/151/10/dev202687/347561/Conserved-physical-mechanisms-of-cell-and-tissue
+https://journals.biologists.com/dev/article/151/10/dev202269/352215/Angpt1-binding-to-Tie1-regulates-the-signaling
+https://journals.biologists.com/dev/article/151/10/dev202292/352165/Foxg1-bimodally-tunes-L1-mRNA-and-DNA-dynamics-in
+https://journals.biologists.com/dev/article/151/10/dev202237/352120/Two-distinct-mechanisms-of-Plexin-A-function-in
+https://journals.biologists.com/dev/article/151/10/dev202640/347559/Cell-coupling-compensates-for-changes-in-single
+https://journals.biologists.com/dev/article/151/10/dev202262/347547/Two-sequential-gene-expression-programs-bridged-by
+https://journals.biologists.com/dev/article/151/10/dev202862/347545/Mechanical-stress-combines-with-planar-polarised
+https://journals.biologists.com/dev/article/151/10/dev202425/347526/Emx2-lineage-tracing-reveals-antecedent-patterns
+https://journals.biologists.com/dev/article/151/10/dev202606/347528/The-Clock-and-Wavefront-Self-Organizing-model
+https://journals.biologists.com/dev/article/151/10/dev202209/352205/Investigating-the-basis-of-lineage-decisions-and
+https://journals.biologists.com/dev/article/151/10/dev202475/347546/Optical-coherence-tomography-guided-Brillouin
+https://journals.biologists.com/dev/article/151/10/dev202252/347530/Fetal-brain-response-to-maternal-inflammation
+https://journals.biologists.com/dev/article/151/10/dev203034/352206/Correction-The-journey-of-a-generation-advances
+https://journals.biologists.com/dev/article/151/10/dev203018/347544/Correction-Innervation-of-the-pancreas-in

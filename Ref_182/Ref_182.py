@@ -1,8 +1,11 @@
-print("This is Ref_136")
+print("This is Ref_182")
 
 import json
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+import undetected_chromedriver as uc
+import chromedriver_autoinstaller as chromedriver
+chromedriver.install()
 from bs4 import BeautifulSoup
 import re
 import certifi
@@ -30,15 +33,21 @@ Ref_value=None
 ini_path=None
 
 
-def get_current_issue():
 
-    response=requests.post("http://www.cjco.cn/data/catalog/catalogMap")
-    soup=json.loads(BeautifulSoup(response.content,'html.parser').text)
-    year_key = str(list(soup["data"]["archive_list"].keys())[0])
-    issue=soup["data"]["archive_list"][year_key][0]["issue"]
-    link=f"http://www.cjco.cn/cn/article/{year_key}/{issue}"
+options = uc.ChromeOptions()
+options.add_argument('--headless')
+options.add_argument('--incognito')
+options.add_argument('--disable-gpu')
+options.add_argument('--disable-software-rasterizer')
+options.add_argument('--disable-dev-shm-usage')
+options.add_argument('--no-sandbox')
+options.add_argument('--disable-infobars')
+options.add_argument('--disable-extensions')
+options.add_argument('--disable-popup-blocking')
+options.add_argument('--user-agent=YOUR_USER_AGENT_STRING')
+chromedriver.install()
+driver = uc.Chrome(options=options)
 
-    return link
 
 
 try:
@@ -79,20 +88,34 @@ try:
             current_soup = BeautifulSoup(response.content, 'html.parser')
             currnt_part = current_soup.find("ul",class_="issues-li").find('li',class_="issues-li-item").find('a')["href"]
             current_url = url + currnt_part
+
+            # print(current_url)
+            # response = requests.get(current_url, headers=headers, timeout=50)
+            # current_soup = BeautifulSoup(response.content, 'html.parser')
+            # vol_year = current_soup.find('h2', class_='h3 mt-0').text.strip().split()
+
+            # year = vol_year[2][1:-1]
+            # volume = vol_year[1]
+            # print(volume)
+            # print(year)
+            current_url = f'https://formative.jmir.org/2024?page=1&perPage=1000'
             response = requests.get(current_url, headers=headers, timeout=50)
             current_soup = BeautifulSoup(response.content, 'html.parser')
-            vol_year = current_soup.find('h2', class_='h3 mt-0').text.strip().split()
+            data = current_soup
+            print(data)
+            # for i in data:
+            #     title = i["title"]
+            #     print(title)
 
-            year = vol_year[2][1:-1]
-            volume = vol_year[1]
-            print(volume)
-            print(year)
+            # articles = current_soup.findAll('a',class_="title-link")
+            # print(len(articles))
 
-            articles = current_soup.findAll('a',class_="title-link")
-            print(len(articles))
-            for article in articles:
-                print(article.text)
+            # for article in articles:
+            #     print(article.text)
 
+
+            # articles = current_soup.findAll('p',class_="h4 full-width-card-info-title")
+            # print(len(articles))
             # Extract the links
             # for link in links_2024.find_all('a', href=True):
             #     print(link['href'])

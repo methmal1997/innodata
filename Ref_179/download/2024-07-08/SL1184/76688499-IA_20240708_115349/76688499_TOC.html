@@ -1,0 +1,1369 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Combined HTML</title>
+    </head>
+    <body>
+    <body class="issue-list-body cn">
+<!--头部-->
+<div class="top">
+<div class="header headerbg">
+<div class="container clear">
+<div class="row">
+<a class="logo col-lg-7 col-md-7 col-sm-7 col-xs-12" href="/">
+<img alt="" class="img-responsive" src="/style/images/custom/logo.png"/>
+</a>
+<div class="logor col-lg-5 col-md-5 col-sm-5 fl">
+<div class="logo-icon fl">
+<a href=""><img alt="" src="/style/images/custom/icon_01.png"/></a>
+</div>
+<div class="logo-icon fl">
+<a href=""><img alt="" src="/style/images/custom/icon_02.png"/></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="top-nav nav header-nav">
+<ul class="nav-inner clearfix container">
+<li type="shouye">
+<a href="/" target="_top">首页</a>
+</li>
+<li type="qikanjianjie">
+<a href="javascript:void(0);" target="_top">期刊简介<span></span></a>
+<ol class="qk-con nav-second data-show">
+<li type="aboutJournal">
+<a href="/aboutJournal" target="_top">期刊介绍</a>
+</li>
+<li type="huojiangqingkuang">
+<a href="/huojiangqingkuang" target="_top">获奖情况</a>
+</li>
+</ol>
+</li>
+<li type="editoralBoard">
+<a href="/editoralBoard" target="_top">编委会</a>
+</li>
+<li type="journalOnline">
+<a href="javascript:void(0);" target="_top">期刊在线<span></span></a>
+<ol class="qk-con nav-second data-show">
+<li type="latestAccepted">
+<a href="/cn/article/latest_accepted" target="_top">最新录用</a>
+</li>
+<li type="latest">
+<a href="/cn/article/latest" target="_top">优先发表</a>
+</li>
+<li type="currentIssue">
+<a href="/cn/article/current" target="_top">当期目录</a>
+</li>
+<li type="archive">
+<a href="/archive" target="_top">过刊浏览</a>
+</li>
+</ol>
+</li>
+<li type="shipin">
+<a href="/shipin" target="_top">视频合辑</a>
+</li>
+<li type="zaixaintougao">
+<a href="javascript:void(0);" target="_top">在线投稿<span></span></a>
+<ol class="qk-con nav-second data-show">
+<li type="tougaoxuzhi">
+<a href="/tougaoxuzhi" target="_top">投稿须知</a>
+</li>
+<li type="gaoyuexiazai">
+<a href="/gaoyuexiazai" target="_top">稿约下载</a>
+</li>
+<li type="banquanxieyi">
+<a href="javascript:void(0);" onclick="downloadFile('','banquanxieyi');">版权协议</a>
+</li>
+</ol>
+</li>
+<li type="huodongfengcai">
+<a href="javascript:void(0);" target="_top">活动风采<span></span></a>
+<ol class="qk-con nav-second data-show">
+<li type="zjbwfc">
+<a href="/zjbwfc" target="_top">专家编委风采</a>
+</li>
+<li type="youxiushengaoren">
+<a href="/youxiushengaoren" target="_top">优秀审稿人</a>
+</li>
+<li type="youxiulunwen">
+<a href="/youxiulunwen" target="_top">优秀论文</a>
+</li>
+</ol>
+</li>
+<li type="guanggaohezuo">
+<a href="javascript:void(0);" target="_top">广告合作<span></span></a>
+<ol class="qk-con nav-second data-show">
+<li type="gghz">
+<a href="/gghz" target="_top">广告合作</a>
+</li>
+<li type="subscriberServices">
+<a href="/subscriberServices" target="_top">期刊订阅</a>
+</li>
+</ol>
+</li>
+<li type="lianxiwomen">
+<a href="/lianxiwomen" target="_top">联系我们</a>
+</li>
+</ul>
+</div><div class="phone-nav">
+<div class="container clearfix">
+<a class="logo fl" href="/">
+<img alt="" src="/style/images/custom/logo.png"/>
+</a>
+<div class="search-app fr"></div>
+<div class="navList fr">
+<span class="span1"></span>
+<span class="span2"></span>
+<span class="span3"></span>
+</div>
+</div>
+<div class="search-app-wrap">
+<form action="/search" class="clear" id="appTopSearchForm1" method="POST" onsubmit="return checkSearchNew(this);">
+<div class="container clear">
+<!--手机搜索可能用到的id：appSearchType-->
+<select class="fl" name="searchField">
+<option selected="" value="">所有</option>
+<option value="titleCn">标题</option>
+<option value="authorNameCn">作者</option>
+<option value="keywordCn">关键词</option>
+<option value="abstractinfoCn">摘要</option>
+<option value="doi">DOI</option>
+<option value="categoryNameCn">栏目</option>
+<option value="addressCn">地址</option>
+<option value="fundsInfoCn">基金</option>
+<option value="clcNos">中图分类号</option>
+<option value="pacs">PACS</option>
+<option value="eeacc">EEACC</option>
+</select>
+<input name="pageType" type="hidden" value="cn"/>
+<input class="formToken" name="token" type="hidden" value=""/>
+<input class="fl text" name="q" placeholder="请输入搜索内容" type="text"/>
+<input class="sub fl" type="submit" value=""/>
+</div>
+</form>
+</div>
+<ul class="smallUl">
+<li type="shouye">
+<a href="/" target="_top">首页</a>
+</li>
+<li type="qikanjianjie">
+<a href="javascript:void(0);" target="_top">期刊简介<span></span></a>
+<ol class="data-show">
+<li type="aboutJournal">
+<a href="/aboutJournal" target="_top">期刊介绍</a>
+</li>
+<li type="huojiangqingkuang">
+<a href="/huojiangqingkuang" target="_top">获奖情况</a>
+</li>
+</ol>
+</li>
+<li type="editoralBoard">
+<a href="/editoralBoard" target="_top">编委会</a>
+</li>
+<li type="journalOnline">
+<a href="javascript:void(0);" target="_top">期刊在线<span></span></a>
+<ol class="data-show">
+<li type="latestAccepted">
+<a href="/cn/article/latest_accepted" target="_top">最新录用</a>
+</li>
+<li type="latest">
+<a href="/cn/article/latest" target="_top">优先发表</a>
+</li>
+<li type="currentIssue">
+<a href="/cn/article/current" target="_top">当期目录</a>
+</li>
+<li type="archive">
+<a href="/archive" target="_top">过刊浏览</a>
+</li>
+</ol>
+</li>
+<li type="shipin">
+<a href="/shipin" target="_top">视频合辑</a>
+</li>
+<li type="zaixaintougao">
+<a href="javascript:void(0);" target="_top">在线投稿<span></span></a>
+<ol class="data-show">
+<li type="tougaoxuzhi">
+<a href="/tougaoxuzhi" target="_top">投稿须知</a>
+</li>
+<li type="gaoyuexiazai">
+<a href="/gaoyuexiazai" target="_top">稿约下载</a>
+</li>
+<li type="banquanxieyi">
+<a href="javascript:void(0);" onclick="downloadFile('','banquanxieyi');">版权协议</a>
+</li>
+</ol>
+</li>
+<li type="huodongfengcai">
+<a href="javascript:void(0);" target="_top">活动风采<span></span></a>
+<ol class="data-show">
+<li type="zjbwfc">
+<a href="/zjbwfc" target="_top">专家编委风采</a>
+</li>
+<li type="youxiushengaoren">
+<a href="/youxiushengaoren" target="_top">优秀审稿人</a>
+</li>
+<li type="youxiulunwen">
+<a href="/youxiulunwen" target="_top">优秀论文</a>
+</li>
+</ol>
+</li>
+<li type="guanggaohezuo">
+<a href="javascript:void(0);" target="_top">广告合作<span></span></a>
+<ol class="data-show">
+<li type="gghz">
+<a href="/gghz" target="_top">广告合作</a>
+</li>
+<li type="subscriberServices">
+<a href="/subscriberServices" target="_top">期刊订阅</a>
+</li>
+</ol>
+</li>
+<li type="lianxiwomen">
+<a href="/lianxiwomen" target="_top">联系我们</a>
+</li>
+</ul>
+</div> </div>
+<input id="pageViewId" type="hidden" value="currentIssue"/>
+<input id="issueArticleList" type="hidden"/>
+<input id="catalog_year" type="hidden" value="2024"/>
+<input id="catalog_issue" type="hidden" value="7"/>
+<div class="main">
+<div class="container clearfix" style="min-height: 14px;">
+<div class="hidden-md hidden-sm hidden-xs">
+</div>
+<div class="main-left col-lg-8 col-md-12 col-sm-12 col-xs-12">
+<div class="list-text item-div contentArea-left-bg">
+<div class="issue_list">
+<h2 class="journalIssue text-center" id="issueTitle"></h2>
+<script id="issueTitleTpl" type="text/html">
+  {{if catalog.state == "1"}}
+  <font>当期目录</font>
+  <p>
+    {{if catalog.year && catalog.year != ""}}{{catalog.year}}年{{/if}}
+    {{if catalog.volume && catalog.volume !='' }}&nbsp;第{{catalog.volume}}卷&nbsp;{{/if}}
+    {{if catalog.issue && catalog.issue != ""}}第{{catalog.issue}}期{{/if}}
+    </p>
+    {{else}}
+    <font>{{if catalog.year && catalog.year != ""}}{{catalog.year}}年{{/if}}
+    {{if catalog.volume && catalog.volume !='' }}&nbsp;第{{catalog.volume}}卷&nbsp;{{/if}}
+    {{if catalog.issue && catalog.issue != ""}}第{{catalog.issue}}期{{/if}}</font>
+    {{/if}}
+</script>
+<div class="articleListBox active" id="lan">
+<div class="toolBoxBorder">
+<div class="toolBox1 clearfix">
+<div class="clearfix toolBox1-issue-neighbor-catalog fr">
+<div class="neighborCatalog pull-right" id="issueNeighborCatalog"></div>
+<script id="issueNeighborCatalogTpl" type="text/html">
+    {{if prev && prev.year != "" && prev.issue != ""}}
+    <span><a id="prev_link" href="{{basePath}}{{_language}}/article/{{prev.year}}/{{prev.issue}}">上一期</a></span>
+    {{/if}}
+    {{if prev && prev.year != "" && prev.issue != "" && next && next.year != "" && next.issue != ""}}
+    <span id="link_between">&nbsp;|&nbsp;</span>
+    {{/if}}
+    {{if next && next.year != "" && next.issue != ""}}
+    <span><a id="next_link" href="{{basePath}}{{_language}}/article/{{next.year}}/{{next.issue}}">下一期</a></span>
+    {{/if}}
+</script>
+</div>
+<div class="clearfix fl toolBox1-column-issue-catalog">
+<div class="column pull-left">
+<div class="_table">
+<div class="_cell clear">
+<i class="fa fa-navicon fl"></i>
+<span class="fl">栏目</span>
+<div class="column-list">
+<ul class="column-ul">
+</ul>
+<script id="columnLi" type="text/html">
+          <li class="mainColor"><a href="#c_{{categoryIndex}}" class="mainColor">{{@ categoryNameCn}}</a></li>
+        </script>
+</div>
+</div>
+</div>
+</div>
+<div class="issue-catalog fl" id="issueCatalog"></div>
+<script id="issueCatalogTpl" type="text/html">
+    <span class="catalog fr"> 
+        {{if catalog && catalog != "" && catalog.catalogFiles && catalog.catalogFiles != ""}}
+	{{set hasCoverFile = "0"}}
+     {{each catalog.catalogFiles item i}}
+     {{if item.filePath && item.filePath != ""}}
+            {{if item.fileType == "coverFile"}}
+            {{set hasCoverFile1 = hasCoverFile = "1"}}
+            {{/if}}
+	  {{/if}}
+     {{/each}}
+    {{each catalog.catalogFiles item i}}
+        {{if item.filePath && item.filePath != ""}}
+            {{if item.fileType == "coverFile" && hasCoverFile == "1"}}
+            	<a href="{{filePath}}{{item.filePath}}" target="_blank">封面</a>
+                            {{else if item.fileType == "cover" && hasCoverFile == "0"}}
+                <a href="{{basePath}}catalog/cover/{{catalog.year}}/{{catalog.issue}}" target="_blank">封面</a>
+            {{else if item.fileType == "content"}}
+                <a href="{{filePath}}{{item.filePath}}" target="_blank">目录</a>
+                                        {{/if}}
+        {{/if}}
+    {{/each}}
+{{/if}}
+    </span>
+</script>
+</div>
+</div>
+<div class="toolBox2 clearfix">
+<label class="chooseAll pull-left">
+<input class="checkAll" type="checkbox" value="">选择全部
+      </input></label>
+<div class="derived fr clear">
+<i class="iconfont icon-daochu4" data-target="#exportCitationModal" data-toggle="modal" id="export" title="导出"></i>
+<i class="iconfont icon-yinyong1" data-target="#ReferenceFormat" data-toggle="modal" id="ReferencePaper" title="引用为参考文献"></i>
+</div>
+</div>
+</div>
+<div id="issueList">
+<div article_id="" class="article-list preload-article-list" id="">
+<div class="article-list-left">
+</div>
+<div class="article-list-right">
+<div class="article-list-title clearfix">
+<a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240402" target="_blank">
+                                    长链非编码RNA HOXA远端转录本在口腔鳞状细胞癌中的表达及生物学意义
+                        </a>
+</div>
+<div class="article-list-author">
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '段亮伟', '')">段亮伟</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '闫森', '')">闫森</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '王晶晶', '')">王晶晶</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '孙强', '')">孙强</a></span>
+</div>
+<div class="article-list-time">
+<font>2024, 51(7): 325-330.</font>
+<font>
+                                DOI: <a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240402" target="_blank">10.12354/j.issn.1000-8179.2024.20240402</a>
+</font>
+</div>
+<div class="article-list-zy article-list-btn clear">
+<font class="font1">
+<a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240402" target="_blank">
+                                摘要</a>
+</font>
+<font class="font2 count1">
+<a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240402?viewType=HTML" target="_blank">
+                                HTML全文</a>
+</font>
+<font class="font3">
+<a href="javascript:void(0);" onclick="downloadpdf('f116c0f6-c7dd-4000-a498-94aaeafc7a33')">PDF</a>
+<span class="hidden">(<span class="colorRed pdf-num"></span>)</span>
+</font>
+</div>
+</div>
+</div>
+<div article_id="" class="article-list preload-article-list" id="">
+<div class="article-list-left">
+</div>
+<div class="article-list-right">
+<div class="article-list-title clearfix">
+<a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240376" target="_blank">
+                                    胃癌高发区武威市人群幽门螺杆菌抗生素耐药性分子诊断研究
+                        </a>
+</div>
+<div class="article-list-author">
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '卢林芝', '')">卢林芝</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '李世华', '')">李世华</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '赵光源', '')">赵光源</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '刘金殿', '')">刘金殿</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '宁秀梅', '')">宁秀梅</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '王星华', '')">王星华</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '王兴昌', '')">王兴昌</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '秦天燕', '')">秦天燕</a></span>
+</div>
+<div class="article-list-time">
+<font>2024, 51(7): 331-336.</font>
+<font>
+                                DOI: <a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240376" target="_blank">10.12354/j.issn.1000-8179.2024.20240376</a>
+</font>
+</div>
+<div class="article-list-zy article-list-btn clear">
+<font class="font1">
+<a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240376" target="_blank">
+                                摘要</a>
+</font>
+<font class="font2 count1">
+<a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240376?viewType=HTML" target="_blank">
+                                HTML全文</a>
+</font>
+<font class="font3">
+<a href="javascript:void(0);" onclick="downloadpdf('2dc337e3-5306-48cc-8735-1fcf01eb1cec')">PDF</a>
+<span class="hidden">(<span class="colorRed pdf-num"></span>)</span>
+</font>
+</div>
+</div>
+</div>
+<div article_id="" class="article-list preload-article-list" id="">
+<div class="article-list-left">
+</div>
+<div class="article-list-right">
+<div class="article-list-title clearfix">
+<a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240349" target="_blank">
+                                    阴道灌洗液中炎症因子与CD4<sup>+</sup>和CD8<sup>+</sup>T细胞在高级别宫颈鳞状上皮内病变与早期宫颈癌发病中的作用研究
+                        </a>
+</div>
+<div class="article-list-author">
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '王岚', '')">王岚</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '唐娟', '')">唐娟</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '庾广聿', '')">庾广聿</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '丁国彦', '')">丁国彦</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '姚婷婷', '')">姚婷婷</a></span>
+</div>
+<div class="article-list-time">
+<font>2024, 51(7): 337-341.</font>
+<font>
+                                DOI: <a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240349" target="_blank">10.12354/j.issn.1000-8179.2024.20240349</a>
+</font>
+</div>
+<div class="article-list-zy article-list-btn clear">
+<font class="font1">
+<a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240349" target="_blank">
+                                摘要</a>
+</font>
+<font class="font2 count1">
+<a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240349?viewType=HTML" target="_blank">
+                                HTML全文</a>
+</font>
+<font class="font3">
+<a href="javascript:void(0);" onclick="downloadpdf('f094e721-4e0d-4661-ad37-7bf27f1fdb8a')">PDF</a>
+<span class="hidden">(<span class="colorRed pdf-num"></span>)</span>
+</font>
+</div>
+</div>
+</div>
+<div article_id="" class="article-list preload-article-list" id="">
+<div class="article-list-left">
+</div>
+<div class="article-list-right">
+<div class="article-list-title clearfix">
+<a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240398" target="_blank">
+                                    BCMA CAR-T治疗复发/难治性多发性骨髓瘤患者的长期疗效和影响因素分析
+                        </a>
+</div>
+<div class="article-list-author">
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '喻敏', '')">喻敏</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '孔繁聪', '')">孔繁聪</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '周玉兰', '')">周玉兰</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '齐凌', '')">齐凌</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '李菲', '')">李菲</a></span>
+</div>
+<div class="article-list-time">
+<font>2024, 51(7): 342-347.</font>
+<font>
+                                DOI: <a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240398" target="_blank">10.12354/j.issn.1000-8179.2024.20240398</a>
+</font>
+</div>
+<div class="article-list-zy article-list-btn clear">
+<font class="font1">
+<a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240398" target="_blank">
+                                摘要</a>
+</font>
+<font class="font2 count1">
+<a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240398?viewType=HTML" target="_blank">
+                                HTML全文</a>
+</font>
+<font class="font3">
+<a href="javascript:void(0);" onclick="downloadpdf('4b070c90-84bc-4405-ad2f-d24028206f0f')">PDF</a>
+<span class="hidden">(<span class="colorRed pdf-num"></span>)</span>
+</font>
+</div>
+</div>
+</div>
+<div article_id="" class="article-list preload-article-list" id="">
+<div class="article-list-left">
+</div>
+<div class="article-list-right">
+<div class="article-list-title clearfix">
+<a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20231269" target="_blank">
+                                    维奈克拉方案治疗复发/难治性急性髓系白血病的临床研究
+                        </a>
+</div>
+<div class="article-list-author">
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '雷芳', '')">雷芳</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '费小明', '')">费小明</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '杨元林', '')">杨元林</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '季艳萍', '')">季艳萍</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '余先球', '')">余先球</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '汤郁', '')">汤郁</a></span>
+</div>
+<div class="article-list-time">
+<font>2024, 51(7): 348-353.</font>
+<font>
+                                DOI: <a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20231269" target="_blank">10.12354/j.issn.1000-8179.2024.20231269</a>
+</font>
+</div>
+<div class="article-list-zy article-list-btn clear">
+<font class="font1">
+<a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20231269" target="_blank">
+                                摘要</a>
+</font>
+<font class="font2 count1">
+<a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20231269?viewType=HTML" target="_blank">
+                                HTML全文</a>
+</font>
+<font class="font3">
+<a href="javascript:void(0);" onclick="downloadpdf('8adb6083-1420-442b-b148-61357230a0fc')">PDF</a>
+<span class="hidden">(<span class="colorRed pdf-num"></span>)</span>
+</font>
+</div>
+</div>
+</div>
+<div article_id="" class="article-list preload-article-list" id="">
+<div class="article-list-left">
+</div>
+<div class="article-list-right">
+<div class="article-list-title clearfix">
+<a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240422" target="_blank">
+                                    国内肿瘤放射治疗领域基础研究的现状与展望
+                        </a>
+</div>
+<div class="article-list-author">
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '王建波', '')">王建波</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '薛建新', '')">薛建新</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '王艳阳', '')">王艳阳</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '姚刚', '')">姚刚</a></span>
+</div>
+<div class="article-list-time">
+<font>2024, 51(7): 354-358.</font>
+<font>
+                                DOI: <a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240422" target="_blank">10.12354/j.issn.1000-8179.2024.20240422</a>
+</font>
+</div>
+<div class="article-list-zy article-list-btn clear">
+<font class="font1">
+<a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240422" target="_blank">
+                                摘要</a>
+</font>
+<font class="font2 count1">
+<a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240422?viewType=HTML" target="_blank">
+                                HTML全文</a>
+</font>
+<font class="font3">
+<a href="javascript:void(0);" onclick="downloadpdf('ed635bd5-cfb7-4e98-93c0-3cec57f6088a')">PDF</a>
+<span class="hidden">(<span class="colorRed pdf-num"></span>)</span>
+</font>
+</div>
+</div>
+</div>
+<div article_id="" class="article-list preload-article-list" id="">
+<div class="article-list-left">
+</div>
+<div class="article-list-right">
+<div class="article-list-title clearfix">
+<a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240301" target="_blank">
+                                    免疫治疗在胃癌中的应用研究进展
+                        </a>
+</div>
+<div class="article-list-author">
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '熊德君', '')">熊德君</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '丁晓凌', '')">丁晓凌</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '周晓荣', '')">周晓荣</a></span>
+</div>
+<div class="article-list-time">
+<font>2024, 51(7): 359-365.</font>
+<font>
+                                DOI: <a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240301" target="_blank">10.12354/j.issn.1000-8179.2024.20240301</a>
+</font>
+</div>
+<div class="article-list-zy article-list-btn clear">
+<font class="font1">
+<a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240301" target="_blank">
+                                摘要</a>
+</font>
+<font class="font2 count1">
+<a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240301?viewType=HTML" target="_blank">
+                                HTML全文</a>
+</font>
+<font class="font3">
+<a href="javascript:void(0);" onclick="downloadpdf('dd3b7f4d-7d65-4085-ad8d-7eb20587126f')">PDF</a>
+<span class="hidden">(<span class="colorRed pdf-num"></span>)</span>
+</font>
+</div>
+</div>
+</div>
+<div article_id="" class="article-list preload-article-list" id="">
+<div class="article-list-left">
+</div>
+<div class="article-list-right">
+<div class="article-list-title clearfix">
+<a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240439" target="_blank">
+                                    肿瘤浸润T淋巴细胞代谢重编程与免疫耐药的研究进展
+                        </a>
+</div>
+<div class="article-list-author">
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '苏佳琳', '')">苏佳琳</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '李雨凝', '')">李雨凝</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '张乐蒙', '')">张乐蒙</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '陈兴龙', '')">陈兴龙</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '刘佳司', '')">刘佳司</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '江舟', '')">江舟</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '罗永忠', '')">罗永忠</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '谭树华', '')">谭树华</a></span>
+</div>
+<div class="article-list-time">
+<font>2024, 51(7): 366-371.</font>
+<font>
+                                DOI: <a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240439" target="_blank">10.12354/j.issn.1000-8179.2024.20240439</a>
+</font>
+</div>
+<div class="article-list-zy article-list-btn clear">
+<font class="font1">
+<a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240439" target="_blank">
+                                摘要</a>
+</font>
+<font class="font2 count1">
+<a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240439?viewType=HTML" target="_blank">
+                                HTML全文</a>
+</font>
+<font class="font3">
+<a href="javascript:void(0);" onclick="downloadpdf('ee033ca0-638d-4fb4-a560-e06179990466')">PDF</a>
+<span class="hidden">(<span class="colorRed pdf-num"></span>)</span>
+</font>
+</div>
+</div>
+</div>
+<div article_id="" class="article-list preload-article-list" id="">
+<div class="article-list-left">
+</div>
+<div class="article-list-right">
+<div class="article-list-title clearfix">
+<a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240357" target="_blank">
+                                    T1期结直肠癌淋巴结转移风险因素的研究进展
+                        </a>
+</div>
+<div class="article-list-author">
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '李林骏', '')">李林骏</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '石素钰洁', '')">石素钰洁</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '杨雅莹', '')">杨雅莹</a></span>
+</div>
+<div class="article-list-time">
+<font>2024, 51(7): 372-376.</font>
+<font>
+                                DOI: <a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240357" target="_blank">10.12354/j.issn.1000-8179.2024.20240357</a>
+</font>
+</div>
+<div class="article-list-zy article-list-btn clear">
+<font class="font1">
+<a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240357" target="_blank">
+                                摘要</a>
+</font>
+<font class="font2 count1">
+<a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240357?viewType=HTML" target="_blank">
+                                HTML全文</a>
+</font>
+<font class="font3">
+<a href="javascript:void(0);" onclick="downloadpdf('d8f5fea3-49f3-4897-afba-5af096c57000')">PDF</a>
+<span class="hidden">(<span class="colorRed pdf-num"></span>)</span>
+</font>
+</div>
+</div>
+</div>
+<div article_id="" class="article-list preload-article-list" id="">
+<div class="article-list-left">
+</div>
+<div class="article-list-right">
+<div class="article-list-title clearfix">
+<a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240456" target="_blank">
+                                    左腋下副乳癌1例
+                        </a>
+</div>
+<div class="article-list-author">
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '张志远', '')">张志远</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '王帅', '')">王帅</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '高佳茹', '')">高佳茹</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '李雯雯', '')">李雯雯</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '贾琳娇', '')">贾琳娇</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '郑明辉', '')">郑明辉</a>, </span>
+<span><a href="javascript:void(0);" onclick="searchLike('authorNameCn', '李文涛', '')">李文涛</a></span>
+</div>
+<div class="article-list-time">
+<font>2024, 51(7): 377-378.</font>
+<font>
+                                DOI: <a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240456" target="_blank">10.12354/j.issn.1000-8179.2024.20240456</a>
+</font>
+</div>
+<div class="article-list-zy article-list-btn clear">
+<font class="font1">
+<a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240456" target="_blank">
+                                摘要</a>
+</font>
+<font class="font2 count1">
+<a href="/cn/article/doi/10.12354/j.issn.1000-8179.2024.20240456?viewType=HTML" target="_blank">
+                                HTML全文</a>
+</font>
+<font class="font3">
+<a href="javascript:void(0);" onclick="downloadpdf('8a6599cb-3067-42c5-92b7-12ea8b32bab2')">PDF</a>
+<span class="hidden">(<span class="colorRed pdf-num"></span>)</span>
+</font>
+</div>
+</div>
+</div>
+<script id="journalgTpl" type="text/html">
+{{if pageViewId != "shouye"}}
+  {{if categoryNameCn.trim() != "" && categoryNameCn != "&nbsp;" && categoryNameCn != "undefined" && categoryNameCn != null}}
+  <div class="article-list-journalg" id="c_{{categoryIndex}}">
+    <a href="javascript:void(0);">{{@ categoryNameCn}}</a>
+  </div>
+  {{/if}}
+{{/if}}
+</script>
+<script id="listTpl" type="text/html">
+{{if article && article.dataType && article.dataType == "News"}}
+    {{set news = article}}
+    <div class="article-list article-list-table">
+        <div class="article-list-left">
+            <span class="allCenter">{{news.rankIndex}}</span>
+        </div>
+        <div class="article-list-right">
+            <div class="clearfix">
+                <div class="article-info-box">
+                    <div class="article-list-title clearfix">
+                        {{if news.imagePath && news.imagePath != "" && news.downloadFile == "1" }}
+                        <a href="javascript:void(0);" onclick="downloadFile('{{news.id}}');">
+                        {{else if news.linkedWebsite && news.linkedWebsite != ""}}
+                        <a href="{{news.linkedWebsite}}" target="{{news.openTarget}}">
+                        {{else}}
+                        <a href="{{basePath}}news/{{news.id}}" target="{{news.openTarget}}">
+                        {{/if}}
+                        {{@ news.title}}</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{{else}}
+    {{if article.id}}
+  <div class="article-list {{if article.articleListType == 'topArticleList'}}article-list-table{{/if}}" id="{{article.id}}" article_id="{{article.id}}">
+    {{if pageViewId == "shouye"}} 
+        {{if  article.categoryNameCn != "&nbsp;" && article.categoryNameCn != "undefined" && article.categoryNameCn != null}}
+        <div class="article-list-journalg" id="c_{{categoryIndex}}">
+            <a href="javascript:void(0);">{{@ article.categoryNameCn}}</a>
+        </div>
+        {{/if}}
+    {{/if}}
+    <div class="article-list-left">
+      {{if (article.articleListType == "issueArticleList" || article.articleListType == "searchArticleList") && pageViewId != "shouye"}}
+       <input name="journalArticleCheck" value="{{article.id}}" type="checkbox" checkArticleId="{{article.id}}"> 
+      {{else if article.articleListType == "commonArticleList"}}
+      <span class="allCenter"></span>
+      {{else if article.articleListType == "topArticleList"}}
+      <span class="allCenter">{{article.rankIndex}}</span>
+      {{/if}}
+    </div>
+  
+    <div class="article-list-right">
+      <div class="clearfix">
+        {{if article.firstFig && article.firstFig.filePath && article.firstFig.filePath != "" && dic.isShowArticleListImgAndAllImg && dic.isShowArticleListImgAndAllImg != "" && article.articleListType != "searchArticleList" && article.articleListType != "searchArticleParaList" &&  article.articleListType != "topArticleList"}}
+        <div class="article-thumb {{if dic.isShowArticleListImgAndAllImg == '1'}}show-thumb{{/if}} {{if dic.articleListImgPostion && dic.articleListImgPostion == '1'}}fl{{/if}} {{if dic.articleListImgPostion && dic.articleListImgPostion == '2'}}fr{{/if}}">
+          <a href='{{if article.doi}}{{basePath}}cn/article/doi/{{article.doi}}{{else}}{{basePath}}cn/article/id/{{article.id}}{{/if}}' target="_blank">
+            <img class="lozad" data-src="{{article.firstFig.filePath}}" alt="{{@ article.titleCn}}">
+          </a>
+        </div>
+        {{/if}}
+        <div class="article-info-box">
+          {{if article.articleListType != "searchArticleParaList"}}
+          <div class="article-list-title clearfix"><a href='{{if article.doi}}{{basePath}}cn/article/doi/{{article.doi}}{{else}}{{basePath}}cn/article/id/{{article.id}}{{/if}}' target="_blank">{{if article.language != "en"}}{{if article.titleCn}}{{@ article.titleCn}}{{/if}}{{if article.subTitleCn && article.subTitleCn != ""}}{{if dic.subtitleFLWCn && dic.subtitleFLWCn != ""}}{{@ dic.subtitleFLWCn}}{{/if}}{{@ article.subTitleCn}}{{if dic.subtitleLLWCn && dic.subtitleLLWCn != ""}}{{@ dic.subtitleLLWCn}}{{/if}}{{/if}}{{else}}{{if article.titleEn}}{{@ article.titleEn}}{{/if}}{{if article.subTitleEn && article.subTitleEn != ""}}{{if dic.subtitleFLWEn && dic.subtitleFLWEn != ""}}{{@ dic.subtitleFLWEn}}{{/if}}{{@ article.subTitleEn}}{{if dic.subtitleLLWEn && dic.subtitleLLWEn != ""}}{{@ dic.subtitleLLWEn}}{{/if}}{{/if}}{{/if}}</a></div>
+          <div class="article-list-author">
+            {{if article.language != "en"}}
+            {{each article.authors au i}}
+<span><a href="javascript:void(0);" {{if au.deceased}}class="deceased-author"{{/if}} onclick="searchLike('authorNameCn', '{{@ delHTMLTag(au.authorNameCn)}}', '')">{{@ au.authorNameCn}}</a>{{if i != article.authors.length - 1}}, {{/if}}</span>
+{{/each}}
+            {{else}}
+            {{each articleAuthors2AhthorsEn(article).authorEnList au i}}
+<span>{{if au.authorNameEn && au.authorNameEn != ""}}<a href="javascript:void(0);" {{if au.deceased}}class="deceased-author"{{/if}} onclick="searchLike('authorNameEn', '{{@ delHTMLTag(au.authorNameEn)}}', '')">{{@ au.authorNameEn}}</a>{{/if}}{{if i != article.authorEnList.length - 1}}, {{/if}}</span>
+{{/each}}
+            {{/if}}
+          </div>
+          <div class="article-list-time">
+            {{if article}}<font>{{if article.articleState && article.articleState != ""}}
+	<font class="colorRed">当前状态: <span class="colorRed current_state" title="Tooltip on top" style="">{{article.releaseProgress.currentState}}</span>,&nbsp;</font><font class="latest_update_span"><i style="font-style:normal;">最新更新时间:</i>&nbsp;<span>{{article.releaseProgress.maxLastReleaseTime}}</span>{{if article.doi && article.doi != ""}},{{/if}}</font>
+{{else}}
+	<font>{{article.year}}, {{article.volume}}({{article.issue}}){{if article.hasPage}}: {{article.page}}.{{/if}}</font>
+{{/if}}</font>{{/if}}
+{{if article.doi && article.doi != ""}}
+<font>DOI: <a href='{{if article.doi}}{{basePath}}cn/article/doi/{{article.doi}}{{else}}{{basePath}}cn/article/id/{{article.id}}{{/if}}' target="_blank" class="mainColor">{{@ article.doi}}</a></font>
+{{/if}}
+          </div>
+          {{/if}}
+          {{if article.articleListType == "searchArticleParaList"}}
+          <div class="article-list-title clearfix"><a href='{{if article.doi}}{{basePath}}cn/article/doi/{{article.doi}}{{else}}{{basePath}}cn/article/id/{{article.id}}{{/if}}' target="_blank">{{if article.language == "zh"}}{{if article.titleCn}}{{@ article.titleCn}}{{/if}}{{if article.subTitleCn && article.subTitleCn != ""}}{{if dic.subtitleFLWCn && dic.subtitleFLWCn != ""}}{{@ dic.subtitleFLWCn}}{{/if}}{{@ article.subTitleCn}}{{if dic.subtitleLLWCn && dic.subtitleLLWCn != ""}}{{@ dic.subtitleLLWCn}}{{/if}}{{/if}}{{else}}{{if article.titleEn}}{{@ article.titleEn}}{{/if}}{{if article.subTitleEn && article.subTitleEn != ""}}{{if dic.subtitleFLWEn && dic.subtitleFLWEn != ""}}{{@ dic.subtitleFLWEn}}{{/if}}{{@ article.subTitleEn}}{{if dic.subtitleLLWEn && dic.subtitleLLWEn != ""}}{{@ dic.subtitleLLWEn}}{{/if}}{{/if}}{{/if}}</a></div>
+          <div class="article-list-author">
+            {{if article.language != "en"}}
+            {{each article.authors au i}}
+<span><a href="javascript:void(0);" {{if au.deceased}}class="deceased-author"{{/if}} onclick="searchLike('authorNameCn', '{{@ delHTMLTag(au.authorNameCn)}}', '')">{{@ au.authorNameCn}}</a>{{if i != article.authors.length - 1}}, {{/if}}</span>
+{{/each}}
+            {{else}}
+            {{each articleAuthors2AhthorsEn(article).authorEnList au i}}
+<span>{{if au.authorNameEn && au.authorNameEn != ""}}<a href="javascript:void(0);" {{if au.deceased}}class="deceased-author"{{/if}} onclick="searchLike('authorNameEn', '{{@ delHTMLTag(au.authorNameEn)}}', '')">{{@ au.authorNameEn}}</a>{{/if}}{{if i != article.authorEnList.length - 1}}, {{/if}}</span>
+{{/each}}
+            {{/if}}
+          </div>
+          <div class="article-list-time">
+            {{if article}}<font>{{if article.articleState && article.articleState != ""}}
+	<font class="colorRed">当前状态: <span class="colorRed current_state" title="Tooltip on top" style="">{{article.releaseProgress.currentState}}</span>,&nbsp;</font><font class="latest_update_span"><i style="font-style:normal;">最新更新时间:</i>&nbsp;<span>{{article.releaseProgress.maxLastReleaseTime}}</span>{{if article.doi && article.doi != ""}},{{/if}}</font>
+{{else}}
+	<font>{{article.year}}, {{article.volume}}({{article.issue}}){{if article.hasPage}}: {{article.page}}.{{/if}}</font>
+{{/if}}</font>{{/if}}
+{{if article.doi && article.doi != ""}}
+<font>DOI: <a href='{{if article.doi}}{{basePath}}cn/article/doi/{{article.doi}}{{else}}{{basePath}}cn/article/id/{{article.id}}{{/if}}' target="_blank" class="mainColor">{{@ article.doi}}</a></font>
+{{/if}}
+          </div>
+          <div class="article-list-fulltext">
+            {{each article.paraList p i}}
+{{if p.paraType == "sec"}}
+<a href="{{basePath}}cn/article/id/{{article.id}}?viewType=HTML#{{p.secEleId}}" class="sec-a" target="_blank">
+  <div class="table-body searchFulltextPara">
+    {{if p.secSerialNum && p.secSerialNum != ""}}{{@ p.secSerialNum}}.&nbsp;{{/if}}
+    {{@ p.paraContent}}
+  </div>
+</a>
+{{else}}
+<a href="{{basePath}}cn/article/id/{{article.id}}?viewType=HTML#{{p.id}}" class="" target="_blank">
+  <div class="table-body searchFulltextPara">
+    {{@ p.paraContent}}
+  </div>
+</a>
+{{/if}}
+{{/each}}
+          </div>
+          {{/if}}
+          {{if article.articleListType == "searchArticleList" && article.keywords.length > 0}}
+          <div class="article-list-zy article-list-keywords">
+            <span style="font-weight:bold;">关键词:</span>
+            {{if article.keywords && article.keywords != "" && article.keywords.length > 0}}
+{{each article.keywords k i}}
+<span><a href="javascript:void(0);" onclick="searchLike('keywordCn','{{@ escapeString(delHTMLTag(k.keywordCn))}}','');"><nobr>{{@ k.keywordCn}}</nobr></a>{{if i != article.keywords.length - 1}}, {{/if}}</span>
+{{/each}}
+{{/if}}
+          </div>
+          {{/if}}
+          {{if article.articleListType != "searchArticleParaList"}}
+          <div class="article-list-zy article-list-btn clear">
+            {{if article.abstractAccess && (article.abstractinfoCn || article.graphicalAbstracts)}}
+<font class="font1"><a href='{{if article.doi}}{{basePath}}cn/article/doi/{{article.doi}}{{else}}{{basePath}}cn/article/id/{{article.id}}{{/if}}' target="_blank"><span class="icon-abstract"></span>摘要</a><span class="hidden">(<span class="colorRed abs-num"></span>)</span></font>
+{{/if}}
+{{if article.htmlAccess}}
+<font class="font2 count1"><a href='{{if article.articleBusiness.htmlSource == 1}}
+    {{if article.doi}}
+        {{basePath}}cn/article/doi/{{article.doi}}?viewType=HTML
+    {{else}}
+        {{basePath}}cn/article/id/{{article.id}}?viewType=HTML
+    {{/if}}
+{{else if article.articleBusiness.htmlSource == 2 && article.articleBusiness.htmlFileName}}
+    {{article.filePath}}/HTML/{{article.articleBusiness.htmlFileName}}
+{{else if article.articleBusiness.htmlSource == 3 && article.articleBusiness.htmlFileName}}
+    {{article.articleBusiness.htmlFileName}}
+{{/if}}' target="_blank"><span class="icon-htmls"></span>HTML</a><span class="hidden">(<span class="colorRed html-num"></span>)</span></font>
+{{/if}}
+{{if article.pdfAccess}}
+<font class="font3">
+	{{if article.articleBusiness.pdfLink && article.articleBusiness.pdfLink != ''}}
+    <a href="{{article.articleBusiness.pdfLink}}" target="_blank"><span class="icon-pdfs"></span>PDF
+    {{else}}<a href="javascript:void(0);" onclick="downloadpdf('{{article.id}}')"><span class="icon-pdfs"></span>PDF(<span>{{article.articleBusiness.pdfFileSizeInt}}KB</span>){{/if}}</a><span class="hidden">(<span class="colorRed pdf-num"></span>)</span></font>
+{{/if}}
+<font class="font4 citedby-font" style="display:none;"><a href='{{if article.doi}}
+	{{basePath}}cn/article/doi/{{article.doi}}?viewType=citedby-info
+{{else}}
+	{{basePath}}cn/article/id/{{article.id}}?viewType=citedby-info
+{{/if}}' target="_blank">施引文献</a>(<span class="colorRed citedBy-num"></span>)</font>
+          </div>
+          {{/if}}
+          {{if article.articleListType == "searchArticleList" && article.abstractinfoCn != ""}}
+          <div class="article-list-zy search-abstract {{if dic.abstractContentShowType}}{{dic.abstractContentShowType}}{{/if}}">
+            {{@ convertAbstractHtml(article.abstractinfoCn, "cn")}}
+          </div>
+          {{/if}}
+        </div>
+      </div>
+      {{if article.articleListType != "searchArticleParaList"}}
+      {{if article.abstractinfoCn != ""}}
+      <div class="article-list-zy morenstyle {{if dic.abstractContentShowType}}{{dic.abstractContentShowType}}{{/if}}">
+        <b>摘要：</b><br/>
+        <span>{{@ convertAbstractHtml(article.abstractinfoCn, "cn")}}</span>
+      </div>
+      {{/if}}
+      {{if (article.figList && article.figList.length > 0) || (article.firstFig && article.firstFig.filePath)}}
+    {{set isFirstFigInFigList = false}}
+    <div class="curtu device curtu-show">
+        <div class="picBox">
+            <ul class="picList clear">
+                <li class="item">
+                    <a class="group3" title="" href='{{if article.doi}}{{basePath}}cn/article/doi/{{article.doi}}{{else}}{{basePath}}cn/article/id/{{article.id}}{{/if}}' target="_blank">
+                        <img data-src="{{article.firstFig.filePath}}" class="figure_img lozad" id="Fig-firstFig" ref="#Fig-firstFig" style="max-width:450px; max-height:158px; margin:0 auto;" />
+                    </a>
+                </li>
+                {{each article.figList vf i}}
+                    {{if vf.fileType === "fulltextFig"}}
+                        {{if article.figList.length >= 2}}
+                            <li class="item">
+                                <a class="group3" title="" href="{{basePath}}supplement/{{vf.id}}" target="_blank">
+                                    <img data-src="{{vf.filePath}}" class="figure_img lozad" id="Fig-{{i + 1}}" ref="#Fig-{{i + 1}}" style="max-width:450px; max-height:158px; margin:0 auto;" />
+                                </a>
+                            </li>
+                        {{else}}
+                            <li class="swiper-slide1 item">
+                                <a class="group3" title="" href="{{basePath}}supplement/{{vf.id}}" target="_blank">
+                                    <img data-src="{{vf.filePath}}" class="figure_img lozad" id="Fig-{{i + 1}}" ref="#Fig-{{i + 1}}" style="max-width:450px; max-height:158px; margin:0 auto;" />
+                                </a>
+                            </li>
+                        {{/if}}
+                    {{else}}
+                        {{set isFirstFigInFigList1 = isFirstFigInFigList = true}}
+                    {{/if}}
+                {{/each}}
+            </ul>
+            {{if article.figList.length >= 2 || (article.firstFig && article.firstFig.filePath && !isFirstFigInFigList && article.figList.length >=1)}}
+            <div class="iconfont icon-jiantou1 picPrev"></div>
+            <div class="iconfont icon-jiantou picNext"></div>
+            {{/if}}
+        </div>
+    </div>
+{{/if}}	
+
+      <div class="citation" style="display:none;">{{@ article.citationCn}}</div>
+            {{/if}}
+    </div>
+  </div>
+  {{/if}}
+  {{/if}}
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="main-right col-lg-4 col-md-4 col-sm-12 col-xs-12 hidden-xs hidden-md hidden-sm hidden-xs">
+<div class="qkxxcon col-lg-6 col-md-6 col-12 col-sm-12 col-xs-12 clearfix tpl-el loading" data-tplid="qkxx"></div>
+<script id="qkxx" type="text/html">
+<div class="qkbook fl">
+  <a href="{{basePath}}cn/article/current">
+    <img src="{{basePath}}catalog/cover/current" alt="Current Issue Cover">
+  </a>
+    <p>
+        <strong>ISSN</strong><span>{{@ journal.issnPpub}}</span>
+    </p>
+    <p>
+        <strong>CN</strong><span>{{@ journal.cssnEpub}}</span>
+    </p>
+</div>
+<div class="bookr fl">
+    <div class="qkxx clearfix">
+        <p>
+            <strong>主编: </strong><span>{{@ journal.hostEditorCn}}</span>
+        </p>
+        <p>
+            <strong>主管: </strong><span>{{@ journal.competentOrgCn}}</span>
+        </p>
+        <p class="one-line clearfix">
+            <!-- <span>天津医科大学肿瘤学院</span> -->
+            <strong>主办: </strong><span>{{@ journal.hostUnitCn}}</span>
+        </p>
+
+        <p class="more-line clearfix">
+            <strong>收录: </strong>
+            <span>{{@ journal.indexedInfo}}</span>
+        </p>
+    </div>
+</div>
+</script>
+<div class="quick-buttonn fl tpl-el loading" data-tplid="tgxt"></div>
+<script id="tgxt" type="text/html">
+	{{each journal.submitLoginAddress v i}}
+        <a href="{{v.link}}" target="_blank" class="quick-button-item-wrap">
+            <span class="quick-icon quick-icon-{{i+5}}"></span><span class="quick-item-title">{{@ v.nameCn}}</span>
+        </a>
+    {{/each}}
+</script>
+<div class="rank-notice clearfix">
+<div class="notice fl tpl-el tpl-el-news" data-columnid="28" data-tplid="links" data-type="news"></div>
+<script id="links" type="text/html">
+<div class="common-title-wrap clearfix">
+    <div class="common-title fl"><span class="common-title-icon"></span><span>{{indexTplData[28].newsColumn.name}}</span></div>
+    <a class="common-more text-muted fr" href="{{basePath}}{{indexTplData[28].newsColumn.abbreviation}}">更多></a>
+</div>
+<div class="common-article-wrap">
+    {{each indexTplData[28].newsList.records v i}}
+        {{if i<8}}
+            <p class="common-article-item-wrap clearfix">
+                <span class="icon-dot"></span>
+                {{if v.linkedWebsite}}
+                <a class="common-article-item-title" href="{{v.linkedWebsite}}" target="{{v.openTarget}}" > 
+                {{else if v.imagePath &&  v.downloadFile == "1"}}
+                <a class="common-article-item-title" href="javascript:void(0);" onclick="downloadFile('{{v.id}}');"  >
+                {{else}}
+                <a class="common-article-item-title" href="{{basePath}}news/{{v.id}}" > 
+                {{/if}}
+                {{@ v.title}}
+                </a> 
+            </p>
+        {{/if}}
+    {{/each}}
+</div>
+</script>
+<div class="rank fr tpl-el tpl-el-news" id="topread"></div>
+<script id="topreadTpl" type="text/html">
+    <div class="common-title-wrap clearfix">
+        <div class="common-title fl">
+            <span class="common-title-icon"></span><span>文章点击排行</span>
+        </div>
+        <a class="common-more text-muted fr"
+            href="{{basePath}}cn/article/top_view">更多></a>
+    </div>
+    <div class="common-article-wrap">
+            {{each otherTopArticleListData.top_view.pagerFilter.records article i}}	
+                <p class="common-article-item-wrap clearfix">
+                    {{if i<3}}
+                        <span class="icon-index icon-index-top">{{i+1}}</span>
+                    {{else}}
+                        <span class="icon-index icon-index-default">{{i+1}}</span>
+                    {{/if}}
+                        <a class="common-article-item-title" href='{{if article.doi}}{{basePath}}cn/article/doi/{{article.doi}}{{else}}{{basePath}}cn/article/id/{{article.id}}{{/if}}' target="_blank"><span></span>{{@ article.titleCn}}</a></li>
+                </p>
+            {{/each}}
+    </div>
+</script>
+</div>
+</div>
+</div>
+</div>
+<div class="footer">
+<div class="bottom container text-center" id="footerBottom"></div>
+<script id="footerBottomTpl" type="text/html">
+    <p class="bq"><span>版权所有 © 2013《中国肿瘤临床》编辑部</span><span><a href="https://beian.miit.gov.cn/#/Integrated/index">津ICP备09011441号-3</a></span></p>
+	<p><span>地址：{{journal.addressCn}}</span><!-- <span>{{journal.postCode}}</span> --><span>电话/传真：{{journal.phoneNo}}</span><span>Email：<a href="mailto:{{journal.email}}">{{journal.email}}</a></span></p>
+		
+</script>
+<script type="text/javascript">
+	renderTpl($("#footerBottom"), "footerBottomTpl", allData);
+</script>
+<div class="btmb text-center" id="supported"></div>
+<script id="supportedTpl" type="text/html">
+  <p class="Supported">
+    本系统由<a target="_blank" href="https://www.rhhz.net/">北京仁和汇智信息技术有限公司</a>开发 {{if dic.baiduTongJiCode && dic.baiduTongJiCode != ""}}<span class="btmb-span">&nbsp;<a href="https://tongji.baidu.com/web/welcome/login" target="_blank"><img class="statistics" src="{{mainPath}}style/images/public/pic.gif" alt="百度统计"></a></span>{{/if}}
+  </p>
+</script>
+<script type="text/javascript">
+	renderTpl($("#supported"), "supportedTpl", allData);
+</script>
+</div>
+<input id="basePath" type="hidden" value="/"/>
+<input id="fileurls" type="hidden" value="/fileZGZLLC/"/>
+<input id="isShowImg" type="hidden" value="0"/>
+<input id="journalTitleCn" type="hidden" value="中国肿瘤临床">
+<input id="journalTitleEn" type="hidden" value="CHINESE JOURNAL OF CLINICAL ONCOLOGY">
+<input id="journalAbbr" type="hidden" value="zgzllc">
+<input id="language" type="hidden" value="cn">
+<div class="bottom-fixed"></div>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?4c6767ea0f032afb1d019a9d97507614";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+<script type="text/javascript">
+	if(allData.dic.sowiseTongJiCode && allData.dic.sowiseTongJiCode != ""){
+	head.ready(function(){
+      $(document).ready(function(){
+            var oScript =document.createElement("script");
+                oScript.type="text/javascript";
+                oScript.src="//plugin.sowise.cn/sowise-plugin.js";
+                oScript.setAttribute("custom-options","{'citedby':false,'suggest':false,'ipRecord':true,'journalId': " + allData.dic.sowiseTongJiCode + ",'fund':false}");
+                document.body.appendChild(oScript);
+        })
+    })
+	}
+</script>
+<script type="text/javascript">
+    if (allData.dic.isFloatAllBox && allData.dic.isFloatAllBox == "1") {
+        head.ready(function(){
+            getNewsList('floatBoxAll', 1, 1, function (data) {
+                var floatBoxAll = {};
+                $.each(data.data, function (i, e) {
+                    floatBoxAll = e;
+                })
+                var floatBoxAllHtml = "";
+                floatBoxAllHtml = template("floatBoxAllTpl", floatBoxAll)
+                $("body").append(floatBoxAllHtml)
+                //满屏飞飘窗调用
+                if ($("#ad1").length > 0 && !sessionStorage.getItem("flySession") && !localStorage.getItem("flyStorage")) {
+                    head.ready(function () {
+                        var ad1 = new AdMove("ad1");
+                        ad1.Run();
+                        $("#ad1").show();
+                    })
+                }
+            })
+        })
+    }
+    if (allData.dic.isFloatBox && allData.dic.isFloatBox == "1") {
+        head.ready(function(){
+            getNewsList('floatBox', 1, 1, function (data) {
+                var floatBox = {};
+                $.each(data.data, function (i, e) {
+                    floatBox = e;
+                })
+                var floatBoxHtml = "";
+                floatBoxHtml = template("floatBoxTpl", floatBox)
+                $("body").append(floatBoxHtml)
+            })
+        })
+    }
+</script>
+<script id="floatBoxAllTpl" type="text/html">
+<!-- 满屏飞飘窗 -->
+<div class="notice-window notice-fly" id="ad1"
+    style="{{if dic.styleFloatBoxAll}}{{dic.styleFloatBoxAll}}{{/if}}">
+    <div class="closex">
+        <span>x</span>
+        <a class="close-session" title="本次浏览器访问不在显示。">关闭</a>
+        <a class="close-local" title="只要不清除本地缓存，就不会显示。">永久关闭</a>
+    </div>
+    <div class="fixtxt">
+        <div class="fixcon">
+            {{each newsList.records v i}}
+            {{@ v.content}}
+            {{/each}}
+        </div>
+    </div>
+</div>
+</script>
+<script id="floatBoxTpl" type="text/html">
+<!-- 悬浮左侧飘窗 -->
+<div class="notice-window notice-fixed" style="{{if dic.styleFloatBox}}{{dic.styleFloatBox}}{{/if}}">
+    <div class="closex">
+        <span>x</span>
+        <a class="close-session" title="本次浏览器访问不在显示。">关闭</a>
+        <a class="close-local" title="只要不清除本地缓存，就不会显示。">永久关闭</a>
+    </div>
+    <div class="fixtxt">
+        <div class="fixcon">
+            {{each newsList.records v i}}
+            {{@ v.content}}
+            {{/each}}
+        </div>
+    </div>
+</div>
+</script>
+<!--导出引用  开始-->
+<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="exportCitationModal" role="dialog" style="display: none;" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button class="close" data-dismiss="modal" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+<h2 class="modal-title" id="myModalLabel"><b>导出文件</b></h2>
+</div>
+<div class="modal-body copyCitationInfo">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h4 class="panel-title">文件类别</h4>
+</div>
+<div class="panel-body">
+<div class="radio">
+<label>
+<input checked="" name="format" type="radio" value="ris"/>
+                            RIS(可直接使用Endnote编辑器进行编辑)
+                        </label>
+</div>
+<div class="radio">
+<label>
+<input name="format" type="radio" value="bib"/>
+                            Bib(可直接使用Latex编辑器进行编辑)
+                        </label>
+</div>
+<div class="radio">
+<label>
+<input name="format" type="radio" value="txt"/>
+                            Txt
+                        </label>
+</div>
+</div>
+</div>
+<div class="panel panel-success">
+<div class="panel-heading">
+<h4 class="panel-title">引用内容</h4>
+</div>
+<div class="panel-body">
+<div class="radio">
+<label>
+<input checked="" name="content" type="radio" value="0"/>
+                            引文——仅导出文章的Citation信息
+                        </label>
+</div>
+<div class="radio">
+<label>
+<input name="content" type="radio" value="1"/>
+                             引文和摘要——导出文章的Citation信息和文章摘要信息
+                        </label>
+</div>
+</div>
+</div>
+</div>
+<div class="modal-footer">
+<button article_id="" class="btn btn-primary" id="exportArticleId" onclick="toExportCitation(this)" type="button">导出</button>
+<button class="btn btn-default" data-dismiss="modal" type="button">关闭</button>
+</div>
+</div>
+</div>
+</div>
+<!--导出引用  结束-->
+<!-- 引用参考文献  开始 -->
+<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="ReferenceFormat" role="dialog" tabindex="-1">
+<div class="modal-dialog modalWidth">
+<div class="modal-content">
+<div class="modal-header">
+<button class="close" data-dismiss="modal" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+<h2 class="modal-title" id="myModalLabel"><b>引用参考文献格式</b></h2>
+</div>
+<div class="modal-body copyCitationInfo">
+<div class="ReferenceScroll">
+<!-- <p class="fixP">You can copy and paste references from this page.</p> -->
+<div id="copyReference">
+</div>
+</div>
+</div>
+<div class="modal-footer">
+<textarea id="biao1" style="overflow:hidden; width:0; height:0;border:0; outline: none;resize:none;background:none;"></textarea>
+<button article_id="" class="btn btn-primary" data-dismiss="modal" onclick="copyArticle(this);" type="button">复制</button>
+<button class="btn btn-default" data-dismiss="modal" type="button">关闭</button>
+</div>
+</div>
+</div>
+</div>
+<!-- 引用参考文献  结束 -->
+<script type="text/javascript">
+    // 加载mathjax后触发
+    function mathJaxLoaded() {
+        // 如果有mathjax，则加载mathjax成功并加载配置及事件监听
+        if (window.MathJax && MathJax.Hub) {
+            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$', '$'], ['\\(', '\\)']] }, "HTML-CSS": { linebreaks: { automatic: true }, scale: 100 } });
+            // var mathJaxLoadedEvent = new Event('mathjaxLoaded');
+            var mathJaxLoadedEvent;
+            // 检查是否存在原生的 Event 构造函数
+            if (typeof Event === 'function') {
+            mathJaxLoadedEvent = new Event('mathjaxLoaded');
+            } else {
+            // IE 8 及更低版本：使用 createEvent 创建事件
+            mathJaxLoadedEvent = document.createEvent('Event');
+            mathJaxLoadedEvent.initEvent('mathjaxLoaded', true, true); // 初始化事件类型、是否冒泡、是否可取消
+            }
+
+            // 检查是否支持 dispatchEvent 方法
+            if (document.dispatchEvent) {
+            document.dispatchEvent(mathJaxLoadedEvent);
+            } else {
+            // IE 8 及更低版本：使用 fireEvent 触发事件
+            document.fireEvent('onmathjaxLoaded', mathJaxLoadedEvent);
+            }
+            // document.dispatchEvent(mathJaxLoadedEvent);
+        }
+    }
+    // 默认的需要加载的js文件
+    var loadedjsFiles = [
+        "bootstrap.min.js",
+        "jquery.nicescroll.js",
+        "owl.carousel.js",
+        "jquery.colorbox.js",
+        "lozad.min.js",
+        "swiper.min.js",
+        "MathJax.js",
+        // "mathjax-config.js",
+        "init.js",
+        "main.js",
+        "index.js",
+        "respond.js",
+        "base.js",
+        "floatwindow.js",
+        "article_cn.js",
+        "jquery.validate.js",
+        "user_validate.js"
+    ];
+
+    /**
+     * 判断allData是否存在branchFiles
+     * 如果存在则在loadedjsFiles中找出branchFiles存在的元素(文件名)使用head.js(basePath + "style/js/" + 文件名), 不存在的元素(文件名)使用使用head.js(mainPath + "style/js/" + 文件名
+     */
+    if (allData.branchFiles) {
+        for (var i = 0; i < loadedjsFiles.length; i++) {
+            if (loadedjsFiles[i] == "MathJax.js") {
+                // head.js("https://mathjax.xml-journal.net/platformTools/js/MathJax-master/MathJax.js?config=TeX-AMS-MML_SVG");
+                head.load('https://cdn.bootcss.com/mathjax/2.7.2-beta.0/MathJax.js?config=TeX-AMS-MML_SVG', function () {
+                    mathJaxLoaded();
+                });
+            }else {
+                allData.branchFiles.indexOf(loadedjsFiles[i]) > -1 ? head.js(basePath + "style/js/" + loadedjsFiles[i]) : head.js(allData.mainPath + "style/js/" + loadedjsFiles[i]);
+            }
+        }
+    } else {
+        for (var i = 0; i < loadedjsFiles.length; i++) {
+            if (loadedjsFiles[i] == "MathJax.js") {
+                // head.js("https://mathjax.xml-journal.net/platformTools/js/MathJax-master/MathJax.js?config=TeX-AMS-MML_SVG");
+                head.load('https://cdn.bootcss.com/mathjax/2.7.2-beta.0/MathJax.js?config=TeX-AMS-MML_SVG', function () {
+                    mathJaxLoaded();
+                });
+            }else{
+                head.js(allData.mainPath + "style/js/" + loadedjsFiles[i]);
+            }
+        }
+    }
+    head.js("https://public.xml-journal.net/rh-public/js/rh-public.js");
+    if(allData.isMultiJournal) {
+       head.js(allData.mainPath + "style/js/multiJournal.js"); 
+    }
+    head.ready(function () {
+        if (!(window.MathJax && MathJax.Hub)) {
+            head.load('https://mathjax.xml-journal.net/platformTools/js/MathJax-master/MathJax.js?config=TeX-AMS-MML_SVG', function () {
+                mathJaxLoaded();
+            });
+        }
+    })
+	/**
+     * 加载css
+     */
+    var loadedCssFiles = [
+        "swiper.min.css",
+        "owl.carousel.css",
+    ];
+    $(document).ready(function () {
+        if (allData.branchFiles) {
+            for (var i = 0; i < loadedCssFiles.length; i++) {
+                allData.branchFiles.indexOf(loadedCssFiles[i]) > -1 ? loadCss({ url: basePath + "style/css/" + loadedCssFiles[i] }) : loadCss({ url: allData.mainPath + "style/css/" + loadedCssFiles[i] });
+            }
+        } else {
+            for (var i = 0; i < loadedCssFiles.length; i++) {
+                loadCss({ url: allData.mainPath + "style/css/" + loadedCssFiles[i] });
+            }
+        }
+        loadCss({ url: allData.mainPath + "style/public/font-awesome/font-awesome.min.css" });
+        loadCss({ url: allData.mainPath + "style/public/iconfont/iconfont.css" });
+        loadCss({ url: "https://public.xml-journal.net/rh-public/css/rh-public.css" });
+        if(allData.isMultiJournal) {
+            loadCss({ url: allData.mainPath + "style/css/multiJournal.css"});
+        }
+    })
+</script>
+<script type="text/javascript">
+    if(allData.branchFiles){
+        allData.branchFiles.indexOf("article_list.js") > -1 ? head.js(basePath + "style/js/article_list.js?t=") : head.js(allData.mainPath + "style/js/article_list.js?t=");
+    } else {
+        head.js(allData.mainPath + "style/js/article_list.js?t=");
+    }
+</script>
+</input></input></input></input></body><br>
+    </body>
+    </html>
+    

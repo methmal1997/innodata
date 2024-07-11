@@ -83,6 +83,9 @@ try:
             print(volume,issue,year,month)
             pdf_list = []
             Articles = current_soup.findAll('div', class_='obj_article_summary')
+
+            articles_count_with_pdf = len(Articles)
+
             for article in Articles:
                 Article_title = article.find('a').text.replace("\n", "").lstrip()
                 Article_link = article.find('a')['href']
@@ -128,6 +131,16 @@ try:
                     with open('completed.txt', 'a', encoding='utf-8') as write_file:
                         write_file.write(Pdf_link + '\n')
                     pdf_list.append(Article_title)
+
+            try:
+                common_function.sendCountAsPost(url_id, Ref_value, str(articles_count_with_pdf),
+                                                str(len(completed_list)),
+                                                str(len(duplicate_list)),
+                                                str(len(error_list)))
+            except Exception as error:
+                message = str(error)
+                print("New update")
+                error_list.append(message)
 
             if str(Email_Sent).lower() == "true":
                 attachment_path = out_excel_file

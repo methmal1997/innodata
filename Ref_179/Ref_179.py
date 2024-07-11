@@ -1,4 +1,4 @@
-print("This is Ref_136")
+print("This is Ref_179")
 
 import json
 import urllib3
@@ -13,6 +13,7 @@ import common_function
 import pandas as pd
 from PyPDF2 import PdfReader
 import requests
+import TOC_HTML
 
 
 headers = {
@@ -74,14 +75,11 @@ try:
             url_value = url.split('/')[-2]
             current_out = common_function.return_current_outfolder(Download_Path, user_id, url_id)
             out_excel_file = common_function.output_excel_name(current_out)
+            TOC_name = f"{url_id}_TOC.html"
 
-            response = requests.post("http://www.cjco.cn/data/catalog/catalogMap")
-            soup = json.loads(BeautifulSoup(response.content, 'html.parser').text)
-            year_key = str(list(soup["data"]["archive_list"].keys())[0])
-            issue = soup["data"]["archive_list"][year_key][0]["issue"]
-            current_link = f"http://www.cjco.cn/cn/article/{year_key}/{issue}"
 
-            response = requests.get(current_link, headers=headers, timeout=50)
+            languageList = [url]
+            response = requests.get(url, headers=headers, timeout=1000)
             current_soup = BeautifulSoup(response.content, 'html.parser')
             article_list =current_soup.findAll('div',class_="article-list")
             pdf_list = []
@@ -98,14 +96,19 @@ try:
                 url_part = title_element['href']
                 Article_link = "http://www.cjco.cn/" + url_part
 
-                Article_title = title_element.get_text(strip=True)
-                # doi_element = article.find('a', href=True, string=True)
-                # DOI = doi_element['href'].split('/doi/')[-1]
-                response = requests.get(Article_link, headers=headers, timeout=50)
+                # Article_title = title_element.get_text(strip=True)
+
+                response = requests.get(Article_link, headers=headers, timeout=1000)
                 current_soup = BeautifulSoup(response.content, 'html.parser')
                 dc_identifier_meta = current_soup.find('meta', attrs={'name': 'dc.identifier'})
                 DOI = dc_identifier_meta['content']
+                range_text = current_soup.find('meta', attrs={'name': 'dc.source'})['content']
+                match = re.search(r"Pages: (\d+-\d+)", range_text)
+                page_range = match.group(1)
+                print(page_range)
 
+                Article_title = current_soup.find("div",class_="articleEn").find("h2").text
+                print(Article_title)
                 pdf_element = article.find('div', class_='article-list-zy').find('font', class_='font3').find('a',                                                                                            onclick=True)
                 if pdf_element:
                     pdf_onclick = pdf_element['onclick']
@@ -122,7 +125,7 @@ try:
                     print("Duplicate Article :", Pdf_link)
                 else:
                     if Article_title not in pdf_list:
-                        response_2 = requests.get(Pdf_link, headers=headers, timeout=50,verify=False)
+                        response_2 = requests.get(Pdf_link, headers=headers, timeout=1000,verify=False)
                         pdf_content = response_2.content
                         output_fimeName = os.path.join(current_out, f"{pdf_count}.pdf")
                         with open(output_fimeName, 'wb') as file:
@@ -135,7 +138,7 @@ try:
                              "Identifier": "",
                              "Volume": volume, "Issue": issue, "Supplement": "",
                              "Part": "",
-                             "Special Issue": "", "Page Range": "", "Month": '',
+                             "Special Issue": "", "Page Range": page_range, "Month": '',
                              "Day": "",
                              "Year": year,
                              "URL": Pdf_link,
@@ -150,6 +153,19 @@ try:
                         with open('completed.txt', 'a', encoding='utf-8') as write_file:
                             write_file.write(Pdf_link + '\n')
                         pdf_list.append(Article_title)
+
+            check = 0
+            while check < 5:
+                try:
+                    print("Wait until the TOC_HTML is downloaded")
+                    TOC_HTML.get_toc_html(current_out, TOC_name, languageList)
+                    check = 5
+                    print("TOC_HTML file downloaded successfully.")
+                except:
+                    if not check < 4:
+                        message = "Failed to get toc pdf"
+                        error_list.append(message)
+                    check += 1
 
             if str(Email_Sent).lower() == "true":
                 attachment_path = out_excel_file
